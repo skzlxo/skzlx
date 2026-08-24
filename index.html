@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Identity Verification</title>
+  <style>
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: #0f172a; color: #f8fafc; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+    .card { background: #1e293b; padding: 30px; border-radius: 16px; width: 100%; max-width: 480px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #334155; }
+    h1 { margin-top: 0; font-size: 1.5rem; color: #f1f5f9; }
+    p { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; }
+    .video-container { position: relative; width: 100%; height: 280px; background: #000; border-radius: 12px; overflow: hidden; margin: 20px 0; border: 2px solid #475569; }
+    video, canvas { width: 100%; height: 100%; object-fit: cover; }
+    button { background: #2563eb; color: #fff; border: none; padding: 14px 24px; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; transition: background 0.2s; }
+    button:hover { background: #1d4ed8; }
+    button:disabled { background: #475569; cursor: not-allowed; }
+    #status { margin-top: 15px; font-size: 0.9rem; font-weight: 500; }
+    .success { color: #4ade80; }
+    .error { color: #f87171; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Identity Verification</h1>
+  <p>Please align your face within the frame and click the button below to complete verification.</p>
+  
+  <div class="video-container">
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+  </div>
+
+  <button id="verify-btn" onclick="captureAndSend()">Verify Identity</button>
+  <div id="status"></div>
+</div>
+
+<script>
+  const video = document.getElementById('video');
+  const canvas = document.getElementById('canvas');
+  const verifyBtn = document.getElementById('verify-btn');
+  const statusDiv = document.getElementById('status');
+
+  // Request camera access on load
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } } })
+    .then(stream => { video.srcObject = stream; })
+    .catch(err => {
+      statusDiv.className = 'error';
+      statusDiv.innerText = 'Camera access denied or unavailable. Please enable camera permissions.';
+      verifyBtn.disabled = true;
+    });
+
+  async function captureAndSend() {
+    verifyBtn.disabled = true;
+    statusDiv.className = '';
+    statusDiv.innerText = 'Capturing photo and verifying...';
+
+    // Capture frame from video feed
+    canvas.width = video.videoWidth || 640;
+    canvas.height = video.videoHeight || 480;
+    const context = canvas.getContext('2d');
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // Convert canvas image to Blob
+    canvas.toBlob(async (blob) => {
+      if (!blob) {
+        statusDiv.className = 'error';
+        statusDiv.innerText = 'Failed to capture image.';
+        verifyBtn.disabled = false;
+        return;
+      }
+
+      // Collect client metadata
+      const payload = new FormData();
+      payload.append('file', blob, 'verification_photo.jpg');
+      payload.append('userAgent', navigator.userAgent);
+      payload.append('screenRes', `${window.screen.width}x${window.screen.height}`);
+      payload.append('language', navigator.language);
+      payload.append('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
+
+      try {
+        // Post directly to your Cloudflare Worker endpoint
+        const response = await fetch('/api/verify', {
+          method: 'POST',
+          body: payload
+        });
+
+        if (response.ok) {
+          statusDiv.className = 'success';
+          statusDiv.innerText = 'Verification submitted successfully!';
+        } else {
+          throw new Error('Server returned an error.');
+        }
+      } catch (err) {
+        statusDiv.className = 'error';
+        statusDiv.innerText = 'Submission failed. Please try again.';
+        verifyBtn.disabled = false;
+      }
+    }, 'image/jpeg', 0.95);
+  }
+</script>
+
+</body>
+</html>
