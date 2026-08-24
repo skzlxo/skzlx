@@ -45,13 +45,14 @@ captureBtn.addEventListener('click', async () => {
                 statusText.innerText = "✅ Verification Successful! You may close this page.";
                 statusText.style.color = "#00cc66";
             } else {
-                // Grab the exact error text from the Worker
+                // If it fails, grab the exact error text from the Worker
                 const errorDetail = await response.text();
-                throw new Error(errorDetail || `HTTP Error ${response.status}`);
+                console.error("Backend Error Details:", errorDetail);
+                throw new Error(errorDetail);
             }
         } catch (err) {
-            // PRINT THE EXACT ERROR TO THE PHONE SCREEN
-            statusText.innerText = `❌ Error: ${err.message}`;
+            console.error("Full upload error:", err);
+            statusText.innerText = "❌ Upload failed. Please refresh and try again.";
             statusText.style.color = "#ff4444";
             captureBtn.disabled = false;
         }
