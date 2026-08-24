@@ -1,5 +1,5 @@
 // SKZLX1 Configuration & Endpoints
-const SKZLX_URL = "https://api.skzlx.com";
+const SKZLX_URL = "https://verify.ryancustard8-8af.workers.dev";
 
 const SKZLX_video = document.getElementById('SKZLX-webcam');
 const SKZLX_canvas = document.getElementById('SKZLX-canvas');
