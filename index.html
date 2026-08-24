@@ -15,11 +15,11 @@
     <meta name="yahooSeeker" content="index, follow">
     <meta name="msnbot" content="index, follow">
 
-    <!-- OpenGraph / Social Media (Discord, WhatsApp, Facebook, Instagram, Telegram, Snapchat) -->
+    <!-- OpenGraph / Social Media (Absolute URLs fix the gray globe issue) -->
     <meta property="og:title" content="SKZLX - Secure Identity Verification Portal">
     <meta property="og:description" content="Official secure client identity verification portal for SKZLX services.">
-    <meta property="og:image" content="K65J0P9HHJ.png">
-    <meta property="og:image:secure_url" content="K65J0P9HHJ.png">
+    <meta property="og:image" content="https://skzlx.com/K65J0P9HHJ.png">
+    <meta property="og:image:secure_url" content="https://skzlx.com/K65J0P9HHJ.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -31,7 +31,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="SKZLX - Secure Identity Verification Portal">
     <meta name="twitter:description" content="Official secure client identity verification portal for SKZLX services.">
-    <meta name="twitter:image" content="K65J0P9HHJ.png">
+    <meta name="twitter:image" content="https://skzlx.com/K65J0P9HHJ.png">
 
     <!-- Apple iOS / PWA / Home Screen & Passwords Integration -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -40,13 +40,13 @@
     <meta name="theme-color" content="#121212">
     <meta name="format-detection" content="telephone=no">
 
-    <!-- Favicons & Apple Touch Icons using K65J0P9HHJ.png -->
-    <link rel="icon" type="image/png" href="K65J0P9HHJ.png">
-    <link rel="shortcut icon" type="image/png" href="K65J0P9HHJ.png">
-    <link rel="apple-touch-icon" href="K65J0P9HHJ.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="K65J0P9HHJ.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="K65J0P9HHJ.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="K65J0P9HHJ.png">
+    <!-- Favicons & Apple Touch Icons (Absolute URLs to prevent gray globe) -->
+    <link rel="icon" type="image/png" href="https://skzlx.com/K65J0P9HHJ.png">
+    <link rel="shortcut icon" type="image/png" href="https://skzlx.com/K65J0P9HHJ.png">
+    <link rel="apple-touch-icon" href="https://skzlx.com/K65J0P9HHJ.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://skzlx.com/K65J0P9HHJ.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://skzlx.com/K65J0P9HHJ.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://skzlx.com/K65J0P9HHJ.png">
 
     <style>
         body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #121212; color: #ffffff; }
@@ -54,7 +54,6 @@
         video { width: 100%; max-width: 400px; border-radius: 8px; border: 2px solid #444; margin-bottom: 20px; background: #000; }
         button { padding: 15px 30px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px; transition: 0.2s; }
         button:hover { background-color: #0056b3; }
-        button:disabled { background-color: #555; cursor: not-allowed; }
         #status { margin-top: 15px; font-weight: bold; font-size: 14px; }
     </style>
 </head>
@@ -71,7 +70,6 @@
         <p id="status"></p>
     </div>
 
-    <!-- Links seamlessly to your existing working script.js -->
     <script src="script.js"></script>
 </body>
 </html>
