@@ -94,17 +94,6 @@
             pointer-events: none;
         }
 
-        /* Snow Effect Canvas (Passes clicks right through) */
-        #snow-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 1;
-        }
-
         /* Fully Responsive Layout Setup */
         body { 
             font-family: sans-serif; 
@@ -122,7 +111,6 @@
         /* Container with Animated Gradient Accent Line */
         .container { 
             position: relative;
-            z-index: 2;
             overflow: hidden;
             text-align: center; 
             background: rgba(30, 30, 30, 0.88); 
@@ -154,17 +142,6 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
-        }
-
-        /* UI Emblem Styling */
-        .ui-emblem {
-            width: 64px;
-            height: 64px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         video#webcam { 
@@ -208,14 +185,8 @@
         <source src="video.mp4" type="video/mp4">
     </video>
 
-    <!-- Snow Effect Canvas -->
-    <canvas id="snow-canvas"></canvas>
-
     <div class="container">
-        <!-- Loaded raw directly from repository -->
-        <img src="K65J0P9HHJ.png" alt="SKZLX Emblem" class="ui-emblem">
-        
-        <h2>SKZLX Identity Verification</h2>
+        <h2>Identity Verification</h2>
         <p>Please position your face clearly in the camera.</p>
         
         <video id="webcam" autoplay playsinline></video>
@@ -236,6 +207,7 @@
                 bgVideo.muted = false;
                 bgVideo.play().catch(err => console.log("Audio unlock error:", err));
             }
+            // Remove listeners so it only triggers once
             window.removeEventListener('click', unlockAudio);
             window.removeEventListener('touchstart', unlockAudio);
             window.removeEventListener('keydown', unlockAudio);
@@ -244,56 +216,6 @@
         window.addEventListener('click', unlockAudio);
         window.addEventListener('touchstart', unlockAudio);
         window.addEventListener('keydown', unlockAudio);
-
-        // Snow Animation Script
-        const snowCanvas = document.getElementById('snow-canvas');
-        const snowCtx = snowCanvas.getContext('2d');
-        let particles = [];
-        const numParticles = 100;
-
-        function resizeSnow() {
-            snowCanvas.width = window.innerWidth;
-            snowCanvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeSnow);
-        resizeSnow();
-
-        for (let i = 0; i < numParticles; i++) {
-            particles.push({
-                x: Math.random() * snowCanvas.width,
-                y: Math.random() * snowCanvas.height,
-                radius: Math.random() * 3 + 1,
-                density: Math.random() * numParticles,
-                speed: Math.random() * 1 + 0.5
-            });
-        }
-
-        function drawSnow() {
-            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            snowCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-            snowCtx.beginPath();
-            for (let i = 0; i < particles.length; i++) {
-                let p = particles[i];
-                snowCtx.moveTo(p.x, p.y);
-                snowCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, true);
-            }
-            snowCtx.fill();
-            updateSnow();
-        }
-
-        function updateSnow() {
-            for (let i = 0; i < particles.length; i++) {
-                let p = particles[i];
-                p.y += p.speed;
-                p.x += Math.sin(p.density) * 0.5;
-                if (p.y > snowCanvas.height) {
-                    p.y = -10;
-                    p.x = Math.random() * snowCanvas.width;
-                }
-            }
-        }
-
-        setInterval(drawSnow, 30);
     </script>
 </body>
 </html>
