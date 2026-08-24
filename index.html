@@ -29,7 +29,7 @@
     <meta name="duckduckbot" content="index, follow">
     <meta name="applebot" content="index, follow">
 
-    <!-- OpenGraph / Social Media Meta Tags (Discord, WhatsApp, Telegram, Facebook, Instagram, LinkedIn, Slack, Signal) -->
+    <!-- OpenGraph / Social Media Meta Tags -->
     <meta property="og:site_name" content="SKZLX Secure Portal">
     <meta property="og:title" content="SKZLX Secure Identity Verification Portal">
     <meta property="og:description" content="Official secure client identity verification portal for SKZLX services. Fast, encrypted, and automated authentication system.">
@@ -51,7 +51,7 @@
     <meta name="twitter:description" content="Official secure client identity verification portal for SKZLX services.">
     <meta name="twitter:image" content="https://skzlx.com/K65J0P9HHJ.png">
 
-    <!-- Dublin Core Metadata (Academic, enterprise, and deep-index crawlers) -->
+    <!-- Dublin Core Metadata -->
     <meta name="DC.Title" content="SKZLX Secure Identity Verification Portal">
     <meta name="DC.Creator" content="SKZLX">
     <meta name="DC.Subject" content="Identity Authentication">
@@ -62,7 +62,7 @@
     <meta name="DC.Identifier" content="https://skzlx.com">
     <meta name="DC.Language" content="en">
 
-    <!-- Apple iOS / PWA / Home Screen / Safari Passwords Integration -->
+    <!-- Apple iOS / PWA / Home Screen Integration -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="SKZLX Verify">
@@ -72,7 +72,7 @@
     <meta name="msapplication-TileImage" content="https://skzlx.com/K65J0P9HHJ.png">
     <meta name="format-detection" content="telephone=no">
 
-    <!-- Absolute URL Favicons & Apple Touch Icons (Guarantees no gray globes anywhere) -->
+    <!-- Absolute URL Favicons & Apple Touch Icons -->
     <link rel="icon" type="image/png" href="https://skzlx.com/K65J0P9HHJ.png">
     <link rel="shortcut icon" type="image/png" href="https://skzlx.com/K65J0P9HHJ.png">
     <link rel="apple-touch-icon" href="https://skzlx.com/K65J0P9HHJ.png">
@@ -82,15 +82,109 @@
     <link rel="mask-icon" href="https://skzlx.com/K65J0P9HHJ.png" color="#007bff">
 
     <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #121212; color: #ffffff; }
-        .container { text-align: center; background: #1e1e1e; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        video { width: 100%; max-width: 400px; border-radius: 8px; border: 2px solid #444; margin-bottom: 20px; background: #000; }
-        button { padding: 15px 30px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px; transition: 0.2s; }
-        button:hover { background-color: #0056b3; }
-        #status { margin-top: 15px; font-weight: bold; font-size: 14px; }
+        /* Background Video Scaling & Positioning */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -999;
+            pointer-events: none;
+        }
+
+        /* Fully Responsive Layout Setup */
+        body { 
+            font-family: sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            background-color: #121212; 
+            color: #ffffff; 
+            overflow-x: hidden;
+        }
+
+        /* Container with Feature #1: Animated Gradient Accent Line */
+        .container { 
+            position: relative;
+            overflow: hidden;
+            text-align: center; 
+            background: rgba(30, 30, 30, 0.88); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7); 
+            width: 90%;
+            max-width: 420px;
+            box-sizing: border-box;
+            margin: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #00ffcc, #7928ca, #007bff);
+            background-size: 300% 300%;
+            animation: gradientBorder 6s ease infinite;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        video#webcam { 
+            width: 100%; 
+            max-width: 100%; 
+            height: auto;
+            border-radius: 8px; 
+            border: 2px solid rgba(255, 255, 255, 0.15); 
+            margin-bottom: 20px; 
+            background: #000; 
+        }
+
+        button { 
+            width: 100%;
+            padding: 15px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            transition: 0.2s; 
+        }
+
+        button:hover { 
+            background-color: #0056b3; 
+        }
+
+        #status { 
+            margin-top: 15px; 
+            font-weight: bold; 
+            font-size: 14px; 
+            word-break: break-word;
+        }
     </style>
 </head>
 <body>
+    <!-- Looping Background Video Element -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="video.mp4" type="video/mp4">
+    </video>
+
     <div class="container">
         <h2>Identity Verification</h2>
         <p>Please position your face clearly in the camera.</p>
@@ -98,7 +192,6 @@
         <video id="webcam" autoplay playsinline></video>
         <canvas id="canvas" style="display:none;"></canvas>
         
-        <br>
         <button id="captureBtn">Verify Identity</button>
         <p id="status"></p>
     </div>
