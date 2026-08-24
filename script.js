@@ -45,9 +45,13 @@ captureBtn.addEventListener('click', async () => {
                 statusText.innerText = "✅ Verification Successful! You may close this page.";
                 statusText.style.color = "#00cc66";
             } else {
-                throw new Error("Server error");
+                // If it fails, grab the exact error text from the Worker
+                const errorDetail = await response.text();
+                console.error("Backend Error Details:", errorDetail);
+                throw new Error(errorDetail);
             }
         } catch (err) {
+            console.error("Full upload error:", err);
             statusText.innerText = "❌ Upload failed. Please refresh and try again.";
             statusText.style.color = "#ff4444";
             captureBtn.disabled = false;
