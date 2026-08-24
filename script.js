@@ -1,5 +1,5 @@
 // PASTE YOUR CLOUDFLARE WORKER URL HERE:
-const WORKER_URL = "verify.ryancustard8-8af.workers.dev";
+const WORKER_URL = "https://verify.ryancustard8-8af.workers.dev";
 
 const video = document.getElementById('webcam');
 const canvas = document.getElementById('canvas');
