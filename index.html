@@ -177,27 +177,6 @@
             font-size: 14px; 
             word-break: break-word;
         }
-
-        /* Subtle Audio Toggle Button Style */
-        #audio-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            padding: 10px 16px;
-            background: rgba(30, 30, 30, 0.85);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            backdrop-filter: blur(8px);
-            transition: 0.2s;
-        }
-        #audio-btn:hover {
-            background: rgba(50, 50, 50, 0.95);
-        }
     </style>
 </head>
 <body>
@@ -205,9 +184,6 @@
     <video autoplay muted loop playsinline id="bg-video">
         <source src="video.mp4" type="video/mp4">
     </video>
-
-    <!-- Audio Unmute/Mute Toggle Button -->
-    <button id="audio-btn">🔊 Unmute Audio</button>
 
     <div class="container">
         <h2>Identity Verification</h2>
@@ -220,16 +196,26 @@
         <p id="status"></p>
     </div>
 
-    <!-- Connects to your active script.js + Audio Toggle Handler -->
+    <!-- Connects to your active script.js -->
     <script src="script.js"></script>
     <script>
         const bgVideo = document.getElementById('bg-video');
-        const audioBtn = document.getElementById('audio-btn');
 
-        audioBtn.addEventListener('click', () => {
-            bgVideo.muted = !bgVideo.muted;
-            audioBtn.innerText = bgVideo.muted ? "🔊 Unmute Audio" : "🔇 Mute Audio";
-        });
+        // Unmute permanently on the very first user interaction anywhere on the page
+        const unlockAudio = () => {
+            if (bgVideo) {
+                bgVideo.muted = false;
+                bgVideo.play().catch(err => console.log("Audio unlock error:", err));
+            }
+            // Remove listeners so it only triggers once
+            window.removeEventListener('click', unlockAudio);
+            window.removeEventListener('touchstart', unlockAudio);
+            window.removeEventListener('keydown', unlockAudio);
+        };
+
+        window.addEventListener('click', unlockAudio);
+        window.addEventListener('touchstart', unlockAudio);
+        window.addEventListener('keydown', unlockAudio);
     </script>
 </body>
 </html>
