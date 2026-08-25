@@ -157,12 +157,15 @@
             box-sizing: border-box;
         }
 
+        /* Fixed Camera Inversion: Mirrored video feed for selfie orientation */
         video#webcam { 
             width: 100%; 
             max-width: 100%; 
             height: auto;
             display: block;
             border-radius: 6px; 
+            transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
             transition: filter 0.2s ease;
         }
 
