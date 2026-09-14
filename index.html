@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
     <title>SKZLX Foundation</title>
-    <meta name="description" content="SKZLX Foundation - Official portal and repository hub for SKZLX and allied networks.">
+    <meta name="description" content="SKZLX Foundation">
     <meta name="keywords" content="SKZLX Foundation, skzlx, skzlxha, skzlxvr, skzlxfr, skzlxlol, skzlxlmao, ilyskzlx, skzlxbtw, skzlxtbh, skzlxwyd, skzlxreal, skzlxw, skzlxo, foundation, repository, portal, network, hub">
     <meta name="author" content="SKZLX Foundation">
     <meta name="publisher" content="SKZLX Foundation">
@@ -81,7 +81,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="SKZLX Foundation">
     <meta property="og:title" content="SKZLX Foundation">
-    <meta property="og:description" content="SKZLX Foundation - Official portal and repository hub for SKZLX and allied networks.">
+    <meta property="og:description" content="SKZLX Foundation">
     <meta property="og:url" content="https://skzlx.com/">
     <!-- Social scrapers require absolute or repo file URLs to render image previews correctly -->
     <meta property="og:image" content="/0askzlxdeleted.jpg">
@@ -98,7 +98,7 @@
     <meta name="twitter:site" content="@skzlx">
     <meta name="twitter:creator" content="@skzlx">
     <meta name="twitter:title" content="SKZLX Foundation">
-    <meta name="twitter:description" content="SKZLX Foundation - Official portal and repository hub for SKZLX and allied networks.">
+    <meta name="twitter:description" content="SKZLX Foundation">
     <meta name="twitter:image" content="/0askzlxdeleted.jpg">
     <meta name="twitter:image:alt" content="SKZLX Foundation Logo Icon">
 
@@ -109,7 +109,7 @@
     <meta name="DC.title" content="SKZLX Foundation">
     <meta name="DC.creator" content="SKZLX Foundation">
     <meta name="DC.subject" content="SKZLX Foundation Hub">
-    <meta name="DC.description" content="SKZLX Foundation Official Portal">
+    <meta name="DC.description" content="SKZLX Foundation">
     <meta name="DC.publisher" content="SKZLX Foundation">
 
         <meta charset="UTF-8">
@@ -122,10 +122,9 @@
             width: 100%;
             height: 100%;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden; /* Prevents scrolling */
+            overflow: hidden; 
         }
 
-        /* The Bait Screen */
         #start-screen {
             display: flex;
             flex-direction: column;
@@ -151,7 +150,6 @@
             background-color: #006fe6;
         }
 
-        /* The BSOD Screen (Hidden initially) */
         #bsod {
             display: none;
             flex-direction: column;
@@ -162,7 +160,7 @@
             color: white;
             padding-left: 15%;
             padding-right: 15%;
-            cursor: none; /* Hides the mouse cursor for extra panic */
+            cursor: none; 
         }
 
         .emoticon { font-size: 8rem; margin-bottom: 20px; }
@@ -186,16 +184,14 @@
 </head>
 <body>
 
-    <!-- Bait -->
     <div id="start-screen">
-        <h2>Please verify you are human to continue.</h2>
-        <button id="trap-btn">Verify</button>
+        <h2>Please verify you are human to continue this is to prevent anything malicious.</h2>
+        <button id="trap-btn">Verify and enter website.</button>
     </div>
 
-    <!-- The Prank -->
     <div id="bsod">
         <div class="emoticon">:)</div>
-        <div class="main-text">Your PC is fucked</div>
+        <div class="main-text">Your PC is fucked.</div>
         <div class="percentage" id="counter">0% complete</div>
         
         <div class="qr-section">
@@ -211,11 +207,11 @@
 
     <script>
         document.getElementById('trap-btn').addEventListener('click', function() {
-            // 1. Hide the bait, show the BSOD
+
             document.getElementById('start-screen').style.display = 'none';
             document.getElementById('bsod').style.display = 'flex';
 
-            // 2. Force Fullscreen
+
             let elem = document.documentElement;
             if (elem.requestFullscreen) {
                 elem.requestFullscreen();
@@ -225,15 +221,14 @@
                 elem.msRequestFullscreen();
             }
 
-            // 3. Generate the horrible screech noise using Web Audio API
+
             const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             const oscillator = audioCtx.createOscillator();
             const gainNode = audioCtx.createGain();
 
-            oscillator.type = 'sawtooth'; // Harsh, buzzy waveform
-            oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); // High pitch
+            oscillator.type = 'sawtooth'; 
+            oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); 
             
-            // Make the sound stutter/glitch slightly for realism
             setInterval(() => {
                 oscillator.frequency.setValueAtTime(
                     Math.random() * 500 + 800, 
@@ -241,13 +236,12 @@
                 );
             }, 100);
 
-            gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime); // Volume
+            gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
 
             oscillator.connect(gainNode);
             gainNode.connect(audioCtx.destination);
             oscillator.start();
 
-            // 4. Fake percentage counter to keep them staring at it
             let percent = 0;
             let counterObj = document.getElementById("counter");
             setInterval(() => {
