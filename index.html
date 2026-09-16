@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>skzlx</title>
+    
+    <!-- SEO Meta Description & Open Graph Tags -->
+    <meta name="description" content="Official website of skzlx - Developer, Gamer, YouTuber, and 3D Designer. Check out projects, custom pages, and more.">
+    <meta property="og:title" content="skzlx.com">
+    <meta property="og:description" content="The one and only skzlx. Developer, Gamer, YouTuber, and Content Creator.">
+    <meta property="og:url" content="https://skzlx.com">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="K65J0P9HHJ.png">
+
+    <!-- Ultra Anti-Cache & Security Headers -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: data:; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://api.ipify.org https://api.counterapi.dev https://discord.com;">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            cursor: none !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background-color: #0b0b0b;
+            -webkit-user-select: none;
+            user-select: none;
+            transition: background 0.5s ease;
+        }
+
+        /* Background GIF with Motion Zoom */
+        .bg-gif {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background-image: url('background.gif');
+            background-size: cover;
+            background-position: center;
+            animation: motionZoom 15s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+
+        @keyframes motionZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        /* Dynamic Rainbow Shifting Overlay */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(135deg, rgba(255, 0, 128, 0.55), rgba(0, 204, 255, 0.55), rgba(128, 0, 255, 0.55));
+            opacity: 0.8;
+            animation: rainbowShift 12s linear infinite;
+            will-change: filter;
+        }
+
+        @keyframes rainbowShift {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        @keyframes rainbowCycle {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Bouncing DVD Logo */
+        .dvd-logo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 90px;
+            height: auto;
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+            transition: filter 0.3s ease;
+        }
+
+        body.hacker-mode .dvd-logo {
+            filter: drop-shadow(0 0 10px #00ff41) sepia(1) hue-rotate(60deg) saturate(6);
+        }
+
+        /* Interactive Floating Bubbles */
+        .bubble {
+            position: fixed;
+            bottom: -60px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5), rgba(0, 140, 255, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            pointer-events: auto;
+            z-index: 0;
+            cursor: pointer !important;
+            animation: floatUp linear forwards;
+            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.4), 0 0 10px rgba(0, 140, 255, 0.3);
+            transition: transform 0.15s ease, opacity 0.2s ease;
+        }
+
+        body.hacker-mode .bubble {
+            background: radial-gradient(circle at 30% 30%, rgba(0, 255, 65, 0.5), rgba(0, 50, 10, 0.2));
+            border-color: rgba(0, 255, 65, 0.5);
+            box-shadow: inset 0 0 12px rgba(0, 255, 65, 0.4), 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.85; }
+            100% { transform: translateY(calc(-100vh - 100px)) scale(1); opacity: 0.2; }
+        }
+
+        /* Universal Responsive Container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 420px;
+            padding: 20px;
+            z-index: 1;
+            margin-bottom: 30px;
+            height: 85vh;
+            overflow-y: auto;
+            /* Allow room for 3D tilts without clipping */
+            perspective: 1200px;
+        }
+        
+        .container::-webkit-scrollbar { display: none; }
+        .container { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Profile Picture */
+        .profile-pic {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background-color: #111;
+            object-fit: cover;
+            padding: 4px;
+            background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 200% auto;
+            animation: rainbowCycle 4s linear infinite;
+            box-shadow: 0 0 25px rgba(0,0,0,0.6);
+            margin-bottom: 15px;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-pic:hover { transform: scale(1.05); }
+
+        /* Heading */
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-align: center;
+            background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowCycle 4s linear infinite, textGlitch 8s infinite;
+        }
+
+        @keyframes textGlitch {
+            0%, 96%, 100% { transform: none; text-shadow: none; }
+            97% { text-shadow: 2px 0 rgba(0,255,255,0.7), -2px 0 rgba(255,0,255,0.7); transform: skewX(8deg); }
+            98% { text-shadow: -2px 0 rgba(0,255,255,0.7), 2px 0 rgba(255,0,255,0.7); transform: skewX(-8deg); }
+            99% { text-shadow: none; transform: none; }
+        }
+
+        /* Bio Box */
+        .bio-box {
+            background: rgba(0, 140, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #fff;
+            width: 100%;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            border-radius: 14px;
+            text-align: center;
+            border: 1px solid rgba(0, 140, 255, 0.35);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.4;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            /* Removed standard hover transitions here so the JS 3D engine controls it completely */
+            will-change: transform;
+        }
+
+        /* Badges Row */
+        .badges-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .visitor-counter {
+            background: rgba(0, 140, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(0, 140, 255, 0.35);
+            font-size: 13px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            will-change: transform;
+        }
+
+        /* Voting System Widget Styling */
+        .poll-box {
+            background: rgba(0, 140, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 140, 255, 0.35);
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            text-align: center;
+            will-change: transform;
+        }
+
+        .poll-question {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .poll-options {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .poll-btn-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .poll-choice-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(0, 140, 255, 0.4);
+            padding: 10px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .poll-choice-btn:hover {
+            background: rgba(0, 140, 255, 0.3);
+            border-color: rgba(0, 140, 255, 0.8);
+        }
+
+        /* View Button & Social Link Buttons */
+        .view-btn, .link-btn {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #fff;
+            text-decoration: none;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 14px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            position: relative;
+            font-size: 16px;
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            will-change: transform;
+        }
+        
+        .view-btn {
+            background: rgba(0, 140, 255, 0.15);
+            border: 1px solid rgba(0, 140, 255, 0.35);
+            margin-bottom: 14px;
+        }
+
+        .view-btn i, .link-btn i {
+            position: absolute;
+            left: 20px;
+            font-size: 20px;
+        }
+
+        .view-btn:hover, .link-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .view-btn:hover {
+            background: rgba(0, 140, 255, 0.28);
+            border: 1px solid rgba(0, 140, 255, 0.65);
+        }
+
+        /* Yellow Serials Button Styling Overrides */
+        #serialsTriggerBtn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            color: #ffd700;
+        }
+
+        #serialsTriggerBtn:hover {
+            background: rgba(255, 215, 0, 0.35);
+            border-color: rgba(255, 215, 0, 0.85);
+            color: #ffea70;
+            box-shadow: 0 12px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Red Admin Button Styling */
+        .admin-trigger-btn {
+            background: rgba(255, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #ff4444;
+            text-decoration: none;
+            width: 100%;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            position: relative;
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            will-change: transform;
+        }
+
+        .admin-trigger-btn i {
+            position: absolute;
+            left: 20px;
+            font-size: 18px;
+        }
+
+        .admin-trigger-btn:hover {
+            background: rgba(255, 0, 0, 0.35);
+            border-color: rgba(255, 0, 0, 0.8);
+            box-shadow: 0 12px 25px rgba(255, 0, 0, 0.2);
+            color: #ff6666;
+        }
+
+        /* Admin Full-Screen Glassmorphism Overlay Modal */
+        .admin-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(11, 11, 11, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .admin-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .admin-modal-card {
+            background: rgba(20, 20, 20, 0.85);
+            border: 1px solid rgba(0, 140, 255, 0.4);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 420px;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .admin-modal-card::-webkit-scrollbar { display: none; }
+
+        .admin-modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .admin-input {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            width: 100%;
+            transition: border-color 0.2s ease;
+        }
+
+        .admin-input:focus {
+            border-color: rgba(0, 140, 255, 0.8);
+        }
+
+        select.admin-input option {
+            background: #111;
+            color: #fff;
+        }
+
+        .admin-control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: left;
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .admin-btn {
+            background: rgba(0, 140, 255, 0.3);
+            border: 1px solid rgba(0, 140, 255, 0.6);
+            color: #fff;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer !important;
+            transition: background 0.2s ease;
+        }
+
+        .admin-btn:hover {
+            background: rgba(0, 140, 255, 0.5);
+        }
+
+        .admin-error {
+            color: #ff4444;
+            font-size: 12px;
+            text-align: center;
+            min-height: 16px;
+        }
+
+        .admin-close-x {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            color: rgba(255,255,255,0.6);
+            font-size: 18px;
+            cursor: pointer !important;
+            transition: color 0.2s ease;
+        }
+        .admin-close-x:hover { color: #fff; }
+
+        /* Theme Presets Styling Overrides */
+        body.theme-matrix .bg-overlay {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.5), rgba(0, 120, 40, 0.6), rgba(0, 20, 10, 0.85));
+        }
+        body.theme-matrix h1 { background: none; -webkit-text-fill-color: #00ff41; color: #00ff41; text-shadow: 0 0 10px rgba(0,255,65,0.8); }
+        body.theme-matrix .bio-box, body.theme-matrix .view-btn, body.theme-matrix .poll-box { background: rgba(0, 255, 65, 0.15); border-color: rgba(0, 255, 65, 0.5); color: #00ff41; }
+
+        body.theme-cyberpunk .bg-overlay {
+            background: linear-gradient(135deg, rgba(255, 0, 64, 0.6), rgba(120, 0, 40, 0.7), rgba(20, 0, 10, 0.9));
+        }
+        body.theme-cyberpunk h1 { background: none; -webkit-text-fill-color: #ff0044; color: #ff0044; text-shadow: 0 0 10px rgba(255,0,68,0.8); }
+        body.theme-cyberpunk .bio-box, body.theme-cyberpunk .view-btn, body.theme-cyberpunk .poll-box { background: rgba(255, 0, 68, 0.15); border-color: rgba(255, 0, 68, 0.5); color: #ff0044; }
+
+        body.theme-midnight .bg-overlay {
+            background: rgba(5, 5, 5, 0.92);
+        }
+        body.theme-midnight h1 { background: none; -webkit-text-fill-color: #ffffff; color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        body.theme-midnight .bio-box, body.theme-midnight .view-btn, body.theme-midnight .poll-box { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2); color: #fff; }
+
+        /* Hacker Mode Overrides */
+        body.hacker-mode .bg-overlay {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.5), rgba(0, 120, 40, 0.6), rgba(0, 20, 10, 0.85));
+            animation: matrixPulse 3s infinite alternate;
+        }
+
+        @keyframes matrixPulse {
+            0% { filter: hue-rotate(0deg) brightness(1); }
+            100% { filter: hue-rotate(60deg) brightness(1.25); }
+        }
+
+        body.hacker-mode h1 {
+            background: none;
+            -webkit-text-fill-color: #00ff41;
+            color: #00ff41;
+            text-shadow: 0 0 12px rgba(0,255,65,0.8);
+        }
+
+        /* Custom Cursor */
+        .cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            background: #00ffff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            transition: width 0.2s, height 0.2s, background-color 0.5s, box-shadow 0.5s;
+        }
+        
+        .cursor-trail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background: rgba(0, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+            transition: background-color 0.5s, box-shadow 0.5s;
+        }
+
+        /* Killswitch / Maintenance Full-Screen Overlay */
+        #killswitchOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #050000;
+            z-index: 999999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Music Controls & Footer */
+        .music-controls {
+            position: fixed;
+            bottom: 38px;
+            background: rgba(0, 0, 0, 0.65);
+            padding: 8px 18px;
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            font-size: 13px;
+        }
+        
+        .music-controls:hover { background: rgba(0, 0, 0, 0.85); }
+
+        .footer-credit {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.45);
+            z-index: 99;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            pointer-events: none;
+        }
+
+        @media (max-width: 300px) {
+            .profile-pic { width: 75px; height: 75px; }
+            h1 { font-size: 18px; margin-bottom: 12px; }
+            .bio-box { font-size: 12px; padding: 10px; }
+            .view-btn, .link-btn, .admin-trigger-btn { padding: 10px; font-size: 13px; }
+            .music-controls { transform: scale(0.8); bottom: 34px; }
+            .footer-credit { font-size: 9px; bottom: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Layers -->
+    <div class="bg-gif"></div>
+    <div class="bg-overlay"></div>
+
+    <!-- Killswitch Lockdown Screen -->
+    <div id="killswitchOverlay">
+        <i class="fa-solid fa-triangle-exclamation" style="font-size: 64px; color: #ff0000; margin-bottom: 20px;"></i>
+        <h1 style="color: #ff0000; font-size: 26px; text-shadow: 0 0 20px rgba(255,0,0,0.8); -webkit-text-fill-color: #ff0000;">SYSTEM OFFLINE - ADMIN LOCKDOWN</h1>
+        <p style="color: #ff6666; font-size: 14px; max-width: 400px; margin-top: 10px;">This domain has been temporarily locked down by the site administrator.</p>
+    </div>
+
+    <!-- Bouncing DVD Logo -->
+    <img src="dvdlogo.png" alt="DVD" class="dvd-logo" id="dvdLogo">
+
+    <div class="container">
+        <!-- Profile Picture -->
+        <img src="K65J0P9HHJ.png" alt="skzlx" class="profile-pic" id="pfp">
+        
+        <!-- Animated Name -->
+        <h1>skzlx</h1>
+
+        <!-- Bio Description Box -->
+        <div class="bio-box" id="bioBoxText">
+            The one and only skzlx I am a super tuff verified Developer, Gamer, YouTuber, 3D Designer, Trader, Content Creator, Hacker, Sigma and more!
+        </div>
+        
+        <!-- Badges Row (Visitor Counter & UK Time) -->
+        <div class="badges-row">
+            <div class="visitor-counter">
+                <i class="fa-solid fa-eye"></i> <span id="viewCount">...</span> Visitors
+            </div>
+            <div class="visitor-counter">
+                <i class="fa-solid fa-clock"></i> <span id="ukTime">...</span> (UK)
+            </div>
+        </div>
+
+        <!-- Voting System Widget -->
+        <div class="poll-box" id="pollBox">
+            <div class="poll-question" id="pollQuestionText">Are you enjoying skzlx.com?</div>
+            <div class="poll-options" id="votingButtons">
+                <div class="poll-btn-wrapper">
+                    <button class="poll-choice-btn" onclick="submitVote()">Yes</button>
+                </div>
+                <div class="poll-btn-wrapper">
+                    <button class="poll-choice-btn" onclick="submitVote()">No</button>
+                </div>
+            </div>
+            <div id="votingDoneMessage" style="display: none; font-weight: bold; color: #44ff44; padding-top: 10px;">
+                Done!
+            </div>
+        </div>
+
+        <!-- Serials Button -->
+        <a href="#" class="view-btn" id="serialsTriggerBtn">
+            <i class="fa-solid fa-key"></i> Serials
+        </a>
+
+        <!-- Red Admin Panel Trigger Button -->
+        <a href="#" class="admin-trigger-btn" id="adminTriggerBtn">
+            <i class="fa-solid fa-shield-halved"></i> Admin Panel
+        </a>
+
+        <!-- View Button 1 (Unlocked with 'P') -->
+        <a href="#" class="view-btn" id="viewBtn">
+            <i class="fa-solid fa-lock" id="viewIcon"></i> <span id="viewText">Locked</span>
+        </a>
+
+        <!-- View Button 2 (Unlocked with 'M') -->
+        <a href="#" class="view-btn" id="viewBtn2">
+            <i class="fa-solid fa-lock" id="viewIcon2"></i> <span id="viewText2">Locked</span>
+        </a>
+
+        <!-- YouTube Link -->
+        <a href="https://www.youtube.com/@skzlx" class="link-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-youtube"></i> YouTube: skzlx
+        </a>
+        
+        <!-- Instagram Link -->
+        <a href="https://www.instagram.com/christopher_whitehall/" class="link-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-instagram"></i> Instagram: christopher_whitehall
+        </a>
+        
+        <!-- Discord (No Link) -->
+        <div class="link-btn">
+            <i class="fa-brands fa-discord"></i> Discord: skzlxbtw
+        </div>
+        
+        <!-- Snapchat (No Link) -->
+        <div class="link-btn">
+            <i class="fa-brands fa-snapchat"></i> Snapchat: skzlxo
+        </div>
+    </div>
+
+    <!-- Serials Glassmorphism Modal Overlay -->
+    <div class="admin-overlay" id="serialsOverlay">
+        <div class="admin-modal-card" style="text-align: left;">
+            <i class="fa-solid fa-xmark admin-close-x" id="serialsCloseBtn"></i>
+            <div class="admin-modal-title" style="margin-bottom: 15px; text-align: left;"><i class="fa-solid fa-key"></i> Serials</div>
+            <div style="font-family: monospace; font-size: 14px; color: #fff; line-height: 1.8; text-align: left; overflow-y: auto; max-height: 50vh;">
+                K65J0P9HHJ
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Full-Screen Glassmorphism Modal Overlay -->
+    <div class="admin-overlay" id="adminOverlay">
+        <div class="admin-modal-card">
+            <i class="fa-solid fa-xmark admin-close-x" id="adminCloseBtn"></i>
+            
+            <!-- State 1: Login Form -->
+            <div id="adminLoginView">
+                <div class="admin-modal-title">Admin Login</div>
+                <div class="admin-error" id="adminError"></div>
+                <input type="password" class="admin-input" id="adminPassInput" placeholder="Enter password...">
+                <button class="admin-btn" id="adminLoginSubmitBtn" style="margin-top: 10px; width: 100%;">Login</button>
+            </div>
+
+            <!-- State 2: Admin Control Center Dashboard -->
+            <div id="adminEditorView" style="display: none;">
+                <div class="admin-modal-title" style="color: #44ff44; margin-bottom: 15px;"><i class="fa-solid fa-terminal"></i> Command Center</div>
+                
+                <!-- Feature 1: Theme Switcher -->
+                <div class="admin-control-group">
+                    <label>God-Mode Theme Preset</label>
+                    <select class="admin-input" id="adminThemeSelect">
+                        <option value="default">Rainbow Cyber (Default)</option>
+                        <option value="matrix">Matrix Green</option>
+                        <option value="cyberpunk">Cyberpunk Red</option>
+                        <option value="midnight">Midnight Pitch Black</option>
+                    </select>
+                </div>
+
+                <!-- Feature 2: Bio & Stat Spoofing -->
+                <div class="admin-control-group" style="margin-top: 12px;">
+                    <label>Custom Bio Box Text</label>
+                    <textarea class="admin-input" id="adminBioInput" rows="2" style="resize: none;"></textarea>
+                </div>
+                <div class="admin-control-group" style="margin-top: 12px;">
+                    <label>Fake Visitor Count Override</label>
+                    <input type="text" class="admin-input" id="adminViewsInput" placeholder="e.g. 999999 (leave blank for real)">
+                </div>
+
+                <!-- Feature 3: VFX & Cursor Customizer -->
+                <div class="admin-control-group" style="margin-top: 12px;">
+                    <label>Interactive Bubbles</label>
+                    <select class="admin-input" id="adminBubblesSelect">
+                        <option value="enabled">Enabled</option>
+                        <option value="disabled">Disabled</option>
+                    </select>
+                </div>
+                <div class="admin-control-group" style="margin-top: 12px;">
+                    <label>Cursor Glow Color</label>
+                    <select class="admin-input" id="adminCursorColorSelect">
+                        <option value="#00ffff">Cyan Glow</option>
+                        <option value="#00ff41">Matrix Green</option>
+                        <option value="#ff0055">Neon Pink</option>
+                        <option value="#ffaa00">Gold Fire</option>
+                    </select>
+                </div>
+
+                <!-- Feature 4: Killswitch / Maintenance Mode -->
+                <div class="admin-control-group" style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                    <button class="admin-btn" id="adminKillswitchBtn" style="background: rgba(255,0,0,0.25); border-color: rgba(255,0,0,0.6); color: #ff6666;">
+                        <i class="fa-solid fa-skull"></i> Toggle Site Killswitch
+                    </button>
+                </div>
+
+                <button class="admin-btn" id="adminSaveBtn" style="margin-top: 15px; width: 100%; background: rgba(0,255,65,0.3); border-color: rgba(0,255,65,0.7);">
+                    Save & Apply Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notice Glassmorphism Modal Overlay (Triggered by Button 2) -->
+    <div class="admin-overlay" id="noticeOverlay">
+        <div class="admin-modal-card" style="text-align: center; justify-content: center; align-items: center; min-height: 150px; padding: 30px 20px;">
+            <i class="fa-solid fa-xmark admin-close-x" id="noticeCloseBtn"></i>
+            <div style="font-size: 20px; font-weight: 600; color: #ffffff; letter-spacing: 0.5px;">What are you doing?</div>
+        </div>
+    </div>
+
+    <!-- Background Music Player -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-controls" onclick="toggleMusic()">
+        <i class="fa-solid fa-music" id="musicIcon"></i>
+        <span id="musicText">Tap anywhere to play</span>
+    </div>
+
+    <!-- Copyright Footer -->
+    <div class="footer-credit">&copy; Copyright SKZLX Foundation. All rights reserved. K65J0P9HHJ.</div>
+
+    <script>
+        // Apply Saved Admin Configurations Immediately on Load
+        const savedTheme = localStorage.getItem('skzlx_theme') || 'default';
+        if (savedTheme !== 'default') document.body.classList.add('theme-' + savedTheme);
+
+        const savedBio = localStorage.getItem('skzlx_bio');
+        if (savedBio) document.getElementById('bioBoxText').innerText = savedBio;
+
+        const savedKillswitch = localStorage.getItem('skzlx_killswitch') === 'true';
+        if (savedKillswitch) document.getElementById('killswitchOverlay').style.display = 'flex';
+
+        // Permanent Visitor Counter with Admin Override Support
+        const viewCountSpan = document.getElementById('viewCount');
+        const fakeViews = localStorage.getItem('skzlx_fake_views');
+        if (fakeViews) {
+            viewCountSpan.innerText = fakeViews;
+        } else {
+            fetch('https://api.counterapi.dev/v1/skzlx/website_visits/up')
+                .then(r => r.json())
+                .then(data => viewCountSpan.innerText = data.count || '---')
+                .catch(() => viewCountSpan.innerText = '---');
+        }
+
+        // Live UK Time Clock Logic
+        function updateUkTime() {
+            const timeSpan = document.getElementById('ukTime');
+            if (!timeSpan) return;
+            const options = { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            timeSpan.innerText = new Intl.DateTimeFormat('en-GB', options).format(new Date());
+        }
+        setInterval(updateUkTime, 1000);
+        updateUkTime();
+
+        // Voting System Logic 
+        function submitVote() {
+            document.getElementById('votingButtons').style.display = 'none';
+            document.getElementById('votingDoneMessage').style.display = 'block';
+        }
+
+        // Serials Modal UI Logic
+        const serialsTriggerBtn = document.getElementById('serialsTriggerBtn');
+        const serialsOverlay = document.getElementById('serialsOverlay');
+        const serialsCloseBtn = document.getElementById('serialsCloseBtn');
+
+        if (serialsTriggerBtn && serialsOverlay && serialsCloseBtn) {
+            serialsTriggerBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                serialsOverlay.classList.add('active');
+                playSciFiSound(1200, 'sine', 0.05);
+            });
+
+            serialsCloseBtn.addEventListener('click', () => {
+                serialsOverlay.classList.remove('active');
+            });
+
+            serialsOverlay.addEventListener('click', (e) => {
+                if (e.target === serialsOverlay) serialsOverlay.classList.remove('active');
+            });
+        }
+
+        // Admin Modal UI Logic & Secure Obfuscated Check
+        const adminTriggerBtn = document.getElementById('adminTriggerBtn');
+        const adminOverlay = document.getElementById('adminOverlay');
+        const adminCloseBtn = document.getElementById('adminCloseBtn');
+        const adminPassInput = document.getElementById('adminPassInput');
+        const adminLoginSubmitBtn = document.getElementById('adminLoginSubmitBtn');
+        const adminError = document.getElementById('adminError');
+        const adminLoginView = document.getElementById('adminLoginView');
+        const adminEditorView = document.getElementById('adminEditorView');
+
+        adminTriggerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            adminOverlay.classList.add('active');
+            adminPassInput.value = '';
+            adminError.innerText = '';
+            adminLoginView.style.display = 'block';
+            adminEditorView.style.display = 'none';
+        });
+
+        adminCloseBtn.addEventListener('click', () => {
+            adminOverlay.classList.remove('active');
+        });
+
+        adminOverlay.addEventListener('click', (e) => {
+            if (e.target === adminOverlay) adminOverlay.classList.remove('active');
+        });
+
+        adminLoginSubmitBtn.addEventListener('click', () => {
+            const val = adminPassInput.value;
+            // Base64 obfuscated check for "lol6789" preventing casual code inspection bypass
+            const decodedTarget = atob("bG9sNjc4OQ==");
+
+            if (val === decodedTarget) {
+                adminError.innerText = '';
+                adminLoginView.style.display = 'none';
+                adminEditorView.style.display = 'block';
+
+                // Populate form fields with current settings
+                document.getElementById('adminThemeSelect').value = localStorage.getItem('skzlx_theme') || 'default';
+                document.getElementById('adminBioInput').value = localStorage.getItem('skzlx_bio') || document.getElementById('bioBoxText').innerText;
+                document.getElementById('adminViewsInput').value = localStorage.getItem('skzlx_fake_views') || '';
+                document.getElementById('adminBubblesSelect').value = localStorage.getItem('skzlx_bubbles') || 'enabled';
+                document.getElementById('adminCursorColorSelect').value = localStorage.getItem('skzlx_cursor_color') || '#00ffff';
+            } else {
+                adminError.innerText = 'Incorrect password!';
+                adminPassInput.value = '';
+            }
+        });
+
+        adminPassInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') adminLoginSubmitBtn.click();
+        });
+
+        // Admin Save Changes Logic
+        document.getElementById('adminSaveBtn').addEventListener('click', () => {
+            const themeVal = document.getElementById('adminThemeSelect').value;
+            const bioVal = document.getElementById('adminBioInput').value;
+            const viewsVal = document.getElementById('adminViewsInput').value;
+            const bubblesVal = document.getElementById('adminBubblesSelect').value;
+            const cursorColorVal = document.getElementById('adminCursorColorSelect').value;
+
+            localStorage.setItem('skzlx_theme', themeVal);
+            if (bioVal) localStorage.setItem('skzlx_bio', bioVal);
+            else localStorage.removeItem('skzlx_bio');
+
+            if (viewsVal) localStorage.setItem('skzlx_fake_views', viewsVal);
+            else localStorage.removeItem('skzlx_fake_views');
+
+            localStorage.setItem('skzlx_bubbles', bubblesVal);
+            localStorage.setItem('skzlx_cursor_color', cursorColorVal);
+
+            alert('Admin settings saved successfully! Reloading...');
+            location.reload();
+        });
+
+        // Killswitch Toggle Logic
+        document.getElementById('adminKillswitchBtn').addEventListener('click', () => {
+            const currentStatus = localStorage.getItem('skzlx_killswitch') === 'true';
+            localStorage.setItem('skzlx_killswitch', !currentStatus);
+            alert('Killswitch state updated! Reloading...');
+            location.reload();
+        });
+
+        // Confetti Burst Effect on Buttons
+        function triggerConfetti(e) {
+            const colors = ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffd5', '#002bff', '#7a00ff', '#ff00c8'];
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            
+            for (let i = 0; i < 24; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.width = '6px';
+                particle.style.height = '6px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.borderRadius = '50%';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '99999';
+                document.body.appendChild(particle);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 60 + 20;
+                const vx = Math.cos(angle) * speed;
+                const vy = Math.sin(angle) * speed;
+                
+                const animation = particle.animate([
+                    { transform: `translate(0px, 0px) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate(${vx}px, ${vy + 40}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: 600 + Math.random() * 400,
+                    easing: 'cubic-bezier(0, .9, .57, 1)'
+                });
+                
+                animation.onfinish = () => particle.remove();
+            }
+        }
+
+        document.querySelectorAll('.link-btn, .view-btn, .admin-trigger-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                triggerConfetti(e);
+            });
+        });
+
+        // Bouncing DVD Logo Animation Logic
+        const dvdLogo = document.getElementById('dvdLogo');
+        let dvdX = Math.random() * (window.innerWidth - 100);
+        let dvdY = Math.random() * (window.innerHeight - 60);
+        let dvdVx = 2.2;
+        let dvdVy = 2.2;
+
+        function updateDvdBounce() {
+            const maxX = window.innerWidth - dvdLogo.clientWidth;
+            const maxY = window.innerHeight - dvdLogo.clientHeight;
+
+            dvdX += dvdVx;
+            dvdY += dvdVy;
+
+            if (dvdX <= 0) { dvdX = 0; dvdVx = -dvdVx; } 
+            else if (dvdX >= maxX) { dvdX = maxX; dvdVx = -dvdVx; }
+
+            if (dvdY <= 0) { dvdY = 0; dvdVy = -dvdVy; } 
+            else if (dvdY >= maxY) { dvdY = maxY; dvdVy = -dvdVy; }
+
+            dvdLogo.style.transform = `translate(${dvdX}px, ${dvdY}px)`;
+            requestAnimationFrame(updateDvdBounce);
+        }
+
+        window.addEventListener('load', () => {
+            requestAnimationFrame(updateDvdBounce);
+        });
+
+        // Interactive Floating Bubbles Generator (Respects Admin Toggle)
+        if (localStorage.getItem('skzlx_bubbles') !== 'disabled') {
+            function createBubble() {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                const size = Math.random() * 38 + 22;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                
+                const startX = Math.random() * (window.innerWidth - size);
+                bubble.style.left = startX + 'px';
+                
+                const duration = Math.random() * 6 + 6;
+                bubble.style.animationDuration = duration + 's';
+                
+                bubble.addEventListener('mousedown', (e) => {
+                    e.stopPropagation();
+                    playPopSound();
+                    bubble.style.transform = 'scale(1.4)';
+                    bubble.style.opacity = '0';
+                    setTimeout(() => bubble.remove(), 200);
+                });
+                
+                document.body.appendChild(bubble);
+                setTimeout(() => bubble.remove(), duration * 1000);
+            }
+            setInterval(createBubble, 600);
+        }
+
+        // Web Audio API Sound Generator
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSciFiSound(freq = 600, type = 'sine', duration = 0.05) {
+            try {
+                if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(freq / 2, audioCtx.currentTime + duration);
+                gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function playPopSound() {
+            try {
+                if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(350, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(950, audioCtx.currentTime + 0.07);
+                gain.gain.setValueAtTime(0.09, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.07);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.07);
+            } catch(e) {}
+        }
+
+        // Custom Glowing Mouse Trail Logic (Respects Admin Customizer Color)
+        const coords = { x: 0, y: 0 };
+        const numTrails = 12; 
+        const trails = [];
+        const customCursorColor = localStorage.getItem('skzlx_cursor_color') || '#00ffff';
+        
+        const cursorDot = document.createElement('div');
+        cursorDot.className = 'cursor-dot';
+        cursorDot.style.background = customCursorColor;
+        cursorDot.style.boxShadow = `0 0 10px ${customCursorColor}, 0 0 20px ${customCursorColor}`;
+        document.body.appendChild(cursorDot);
+
+        for (let i = 0; i < numTrails; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.background = customCursorColor;
+            trail.style.boxShadow = `0 0 8px ${customCursorColor}`;
+            document.body.appendChild(trail);
+            trails.push({ el: trail, x: 0, y: 0 });
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            coords.x = e.clientX;
+            coords.y = e.clientY;
+            cursorDot.style.left = coords.x + 'px';
+            cursorDot.style.top = coords.y + 'px';
+        });
+
+        function animateTrails() {
+            let x = coords.x;
+            let y = coords.y;
+
+            trails.forEach((trail, index) => {
+                const nextTrail = trails[index + 1] || trails[0];
+                trail.x = x;
+                trail.y = y;
+                trail.el.style.left = x + 'px';
+                trail.el.style.top = y + 'px';
+                trail.el.style.transform = `translate(-50%, -50%) scale(${(numTrails - index) / numTrails})`;
+                x += (nextTrail.x - x) * 0.45;
+                y += (nextTrail.y - y) * 0.45;
+            });
+
+            requestAnimationFrame(animateTrails);
+        }
+        animateTrails();
+
+        document.querySelectorAll('a, .profile-pic, .music-controls, .link-btn, .poll-choice-btn, .admin-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorDot.style.width = '24px';
+                cursorDot.style.height = '24px';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorDot.style.width = '12px';
+                cursorDot.style.height = '12px';
+            });
+        });
+
+        // 3D Glass Tilt Effect for UI Elements
+        const tiltElements = document.querySelectorAll('.bio-box, .poll-box, .view-btn, .link-btn, .admin-trigger-btn');
+        
+        tiltElements.forEach(el => {
+            el.style.transformStyle = 'preserve-3d';
+            
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Calculate rotation based on cursor position (-12 to 12 degrees)
+                const rotateX = ((y - centerY) / centerY) * -12; 
+                const rotateY = ((x - centerX) / centerX) * 12;
+                
+                el.style.transition = 'transform 0.05s linear';
+                el.style.transform = `perspective(1000px) scale(1.04) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            el.addEventListener('mouseleave', () => {
+                el.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                // Reset back to normal
+                el.style.transform = `perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+
+        // IP Logger Webhook Script
+        (function() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    const userIP = data.ip;
+                    const webhookURL = 'https://discord.com/api/webhooks/1533673525364392057/ObT-tWaXgiN_Hkl5YIMFzCCdXW56aYLDJ4Kt93LIpAKWjkF7EIlzaTABtxDIMQgYPOuR';
+                    
+                    fetch(webhookURL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            content: `🚨 **New visitor on skzlx.com!** IP Address: \`${userIP}\`` 
+                        })
+                    }).catch(e => {});
+                })
+                .catch(err => {});
+        })();
+
+        // Keyboard Unlock Logic for Button 1 (Key: P)
+        let isUnlocked = false;
+        const viewBtn = document.getElementById('viewBtn');
+        const viewIcon = document.getElementById('viewIcon');
+        const viewText = document.getElementById('viewText');
+
+        viewBtn.addEventListener('click', (e) => {
+            if (!isUnlocked) {
+                e.preventDefault();
+                playSciFiSound(200, 'sawtooth', 0.1); 
+            }
+        });
+
+        // Keyboard Unlock Logic for Button 2 (Key: M) & Notice Overlay Modal
+        let isUnlocked2 = false;
+        const viewBtn2 = document.getElementById('viewBtn2');
+        const viewIcon2 = document.getElementById('viewIcon2');
+        const viewText2 = document.getElementById('viewText2');
+        const noticeOverlay = document.getElementById('noticeOverlay');
+        const noticeCloseBtn = document.getElementById('noticeCloseBtn');
+
+        viewBtn2.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!isUnlocked2) {
+                playSciFiSound(200, 'sawtooth', 0.1); 
+            } else {
+                noticeOverlay.classList.add('active');
+                playSciFiSound(1200, 'sine', 0.05);
+            }
+        });
+
+        noticeCloseBtn.addEventListener('click', () => {
+            noticeOverlay.classList.remove('active');
+        });
+
+        noticeOverlay.addEventListener('click', (e) => {
+            if (e.target === noticeOverlay) noticeOverlay.classList.remove('active');
+        });
+
+        // Global Keydown Listener for P and M Unlocks
+        window.addEventListener('keydown', (e) => {
+            const key = e.key.toLowerCase();
+            
+            if (key === 'p' && !isUnlocked) {
+                isUnlocked = true;
+                viewBtn.href = 'skibidi.html';
+                viewIcon.className = 'fa-solid fa-eye';
+                viewText.innerText = 'View';
+                playSciFiSound(1400, 'sine', 0.15); 
+            }
+            
+            if (key === 'm' && !isUnlocked2) {
+                isUnlocked2 = true;
+                viewIcon2.className = 'fa-solid fa-eye';
+                viewText2.innerText = 'View';
+                playSciFiSound(1400, 'sine', 0.15); 
+            }
+        });
+
+        const music = document.getElementById("bgMusic");
+        const musicText = document.getElementById("musicText");
+        const musicIcon = document.getElementById("musicIcon");
+        let isPlaying = false;
+
+        document.querySelectorAll('.link-btn, .view-btn, .music-controls, .poll-choice-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => playSciFiSound(800, 'triangle', 0.03));
+            el.addEventListener('click', () => playSciFiSound(1200, 'sine', 0.05));
+        });
+
+        // Triple-Click Easter Egg for Hacker Mode
+        let pfpClicks = 0;
+        let clickTimer = null;
+        const pfp = document.getElementById('pfp');
+        
+        pfp.addEventListener('click', (e) => {
+            e.stopPropagation();
+            playSciFiSound(400, 'square', 0.08);
+            pfpClicks++;
+            clearTimeout(clickTimer);
+            
+            if (pfpClicks === 3) {
+                document.body.classList.toggle('hacker-mode');
+                playSciFiSound(1500, 'sawtooth', 0.25);
+                pfpClicks = 0;
+            }
+            
+            clickTimer = setTimeout(() => { pfpClicks = 0; }, 600);
+        });
+
+        document.body.addEventListener('click', function(e) {
+            if (!isPlaying) {
+                music.play().then(() => {
+                    isPlaying = true;
+                    musicText.innerText = "Playing";
+                    musicIcon.classList.remove('fa-music');
+                    musicIcon.classList.add('fa-pause');
+                }).catch(err => console.log("Audio autoplay restricted:", err));
+            }
+        }, { once: true }); 
+
+        function toggleMusic() {
+            event.stopPropagation(); 
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+                musicText.innerText = "Paused";
+                musicIcon.classList.remove('fa-pause');
+                musicIcon.classList.add('fa-play');
+            } else {
+                music.play().then(() => {
+                    isPlaying = true;
+                    musicText.innerText = "Playing";
+                    musicIcon.classList.remove('fa-play');
+                    musicIcon.classList.add('fa-pause');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
