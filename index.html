@@ -22,7 +22,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="no-referrer">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: data:; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://api.ipify.org https://api.counterapi.dev https://discord.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: data:; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://api.ipify.org https://discord.com;">
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -151,7 +151,6 @@
             margin-bottom: 30px;
             height: 85vh;
             overflow-y: auto;
-            /* Allow room for 3D tilts without clipping */
             perspective: 1200px;
         }
         
@@ -205,7 +204,7 @@
             color: #fff;
             width: 100%;
             padding: 14px 18px;
-            margin-bottom: 12px;
+            margin-bottom: 24px;
             border-radius: 14px;
             text-align: center;
             border: 1px solid rgba(0, 140, 255, 0.35);
@@ -213,90 +212,7 @@
             font-weight: 400;
             line-height: 1.4;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            /* Removed standard hover transitions here so the JS 3D engine controls it completely */
             will-change: transform;
-        }
-
-        /* Badges Row */
-        .badges-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 14px;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .visitor-counter {
-            background: rgba(0, 140, 255, 0.15);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            color: #fff;
-            padding: 6px 16px;
-            border-radius: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(0, 140, 255, 0.35);
-            font-size: 13px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            will-change: transform;
-        }
-
-        /* Voting System Widget Styling */
-        .poll-box {
-            background: rgba(0, 140, 255, 0.12);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            width: 100%;
-            padding: 16px;
-            border-radius: 14px;
-            border: 1px solid rgba(0, 140, 255, 0.35);
-            margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            text-align: center;
-            will-change: transform;
-        }
-
-        .poll-question {
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 12px;
-            color: #fff;
-            line-height: 1.3;
-        }
-
-        .poll-options {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .poll-btn-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .poll-choice-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 1px solid rgba(0, 140, 255, 0.4);
-            padding: 10px 8px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .poll-choice-btn:hover {
-            background: rgba(0, 140, 255, 0.3);
-            border-color: rgba(0, 140, 255, 0.8);
         }
 
         /* View Button & Social Link Buttons */
@@ -358,42 +274,7 @@
             box-shadow: 0 12px 25px rgba(255, 215, 0, 0.3);
         }
 
-        /* Red Admin Button Styling */
-        .admin-trigger-btn {
-            background: rgba(255, 0, 0, 0.2);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: #ff4444;
-            text-decoration: none;
-            width: 100%;
-            padding: 12px 20px;
-            margin-bottom: 20px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 0, 0, 0.4);
-            position: relative;
-            font-size: 15px;
-            font-weight: 600;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            will-change: transform;
-        }
-
-        .admin-trigger-btn i {
-            position: absolute;
-            left: 20px;
-            font-size: 18px;
-        }
-
-        .admin-trigger-btn:hover {
-            background: rgba(255, 0, 0, 0.35);
-            border-color: rgba(255, 0, 0, 0.8);
-            box-shadow: 0 12px 25px rgba(255, 0, 0, 0.2);
-            color: #ff6666;
-        }
-
-        /* Admin Full-Screen Glassmorphism Overlay Modal */
+        /* Modal Overlay Support Classes (For Serials) */
         .admin-overlay {
             position: fixed;
             top: 0;
@@ -443,59 +324,6 @@
             margin-bottom: 5px;
         }
 
-        .admin-input {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 10px 14px;
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-            width: 100%;
-            transition: border-color 0.2s ease;
-        }
-
-        .admin-input:focus {
-            border-color: rgba(0, 140, 255, 0.8);
-        }
-
-        select.admin-input option {
-            background: #111;
-            color: #fff;
-        }
-
-        .admin-control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            text-align: left;
-            font-size: 13px;
-            color: rgba(255,255,255,0.8);
-        }
-
-        .admin-btn {
-            background: rgba(0, 140, 255, 0.3);
-            border: 1px solid rgba(0, 140, 255, 0.6);
-            color: #fff;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer !important;
-            transition: background 0.2s ease;
-        }
-
-        .admin-btn:hover {
-            background: rgba(0, 140, 255, 0.5);
-        }
-
-        .admin-error {
-            color: #ff4444;
-            font-size: 12px;
-            text-align: center;
-            min-height: 16px;
-        }
-
         .admin-close-x {
             position: absolute;
             top: 15px;
@@ -506,25 +334,6 @@
             transition: color 0.2s ease;
         }
         .admin-close-x:hover { color: #fff; }
-
-        /* Theme Presets Styling Overrides */
-        body.theme-matrix .bg-overlay {
-            background: linear-gradient(135deg, rgba(0, 255, 65, 0.5), rgba(0, 120, 40, 0.6), rgba(0, 20, 10, 0.85));
-        }
-        body.theme-matrix h1 { background: none; -webkit-text-fill-color: #00ff41; color: #00ff41; text-shadow: 0 0 10px rgba(0,255,65,0.8); }
-        body.theme-matrix .bio-box, body.theme-matrix .view-btn, body.theme-matrix .poll-box { background: rgba(0, 255, 65, 0.15); border-color: rgba(0, 255, 65, 0.5); color: #00ff41; }
-
-        body.theme-cyberpunk .bg-overlay {
-            background: linear-gradient(135deg, rgba(255, 0, 64, 0.6), rgba(120, 0, 40, 0.7), rgba(20, 0, 10, 0.9));
-        }
-        body.theme-cyberpunk h1 { background: none; -webkit-text-fill-color: #ff0044; color: #ff0044; text-shadow: 0 0 10px rgba(255,0,68,0.8); }
-        body.theme-cyberpunk .bio-box, body.theme-cyberpunk .view-btn, body.theme-cyberpunk .poll-box { background: rgba(255, 0, 68, 0.15); border-color: rgba(255, 0, 68, 0.5); color: #ff0044; }
-
-        body.theme-midnight .bg-overlay {
-            background: rgba(5, 5, 5, 0.92);
-        }
-        body.theme-midnight h1 { background: none; -webkit-text-fill-color: #ffffff; color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
-        body.theme-midnight .bio-box, body.theme-midnight .view-btn, body.theme-midnight .poll-box { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2); color: #fff; }
 
         /* Hacker Mode Overrides */
         body.hacker-mode .bg-overlay {
@@ -575,23 +384,6 @@
             transition: background-color 0.5s, box-shadow 0.5s;
         }
 
-        /* Killswitch / Maintenance Full-Screen Overlay */
-        #killswitchOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #050000;
-            z-index: 999999;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
-
         /* Music Controls & Footer */
         .music-controls {
             position: fixed;
@@ -631,7 +423,7 @@
             .profile-pic { width: 75px; height: 75px; }
             h1 { font-size: 18px; margin-bottom: 12px; }
             .bio-box { font-size: 12px; padding: 10px; }
-            .view-btn, .link-btn, .admin-trigger-btn { padding: 10px; font-size: 13px; }
+            .view-btn, .link-btn { padding: 10px; font-size: 13px; }
             .music-controls { transform: scale(0.8); bottom: 34px; }
             .footer-credit { font-size: 9px; bottom: 5px; }
         }
@@ -642,13 +434,6 @@
     <!-- Background Layers -->
     <div class="bg-gif"></div>
     <div class="bg-overlay"></div>
-
-    <!-- Killswitch Lockdown Screen -->
-    <div id="killswitchOverlay">
-        <i class="fa-solid fa-triangle-exclamation" style="font-size: 64px; color: #ff0000; margin-bottom: 20px;"></i>
-        <h1 style="color: #ff0000; font-size: 26px; text-shadow: 0 0 20px rgba(255,0,0,0.8); -webkit-text-fill-color: #ff0000;">SYSTEM OFFLINE - ADMIN LOCKDOWN</h1>
-        <p style="color: #ff6666; font-size: 14px; max-width: 400px; margin-top: 10px;">This domain has been temporarily locked down by the site administrator.</p>
-    </div>
 
     <!-- Bouncing DVD Logo -->
     <img src="dvdlogo.png" alt="DVD" class="dvd-logo" id="dvdLogo">
@@ -664,51 +449,10 @@
         <div class="bio-box" id="bioBoxText">
             The one and only skzlx I am a super tuff verified Developer, Gamer, YouTuber, 3D Designer, Trader, Content Creator, Hacker, Sigma and more!
         </div>
-        
-        <!-- Badges Row (Visitor Counter & UK Time) -->
-        <div class="badges-row">
-            <div class="visitor-counter">
-                <i class="fa-solid fa-eye"></i> <span id="viewCount">...</span> Visitors
-            </div>
-            <div class="visitor-counter">
-                <i class="fa-solid fa-clock"></i> <span id="ukTime">...</span> (UK)
-            </div>
-        </div>
-
-        <!-- Voting System Widget -->
-        <div class="poll-box" id="pollBox">
-            <div class="poll-question" id="pollQuestionText">Are you enjoying skzlx.com?</div>
-            <div class="poll-options" id="votingButtons">
-                <div class="poll-btn-wrapper">
-                    <button class="poll-choice-btn" onclick="submitVote()">Yes</button>
-                </div>
-                <div class="poll-btn-wrapper">
-                    <button class="poll-choice-btn" onclick="submitVote()">No</button>
-                </div>
-            </div>
-            <div id="votingDoneMessage" style="display: none; font-weight: bold; color: #44ff44; padding-top: 10px;">
-                Done!
-            </div>
-        </div>
 
         <!-- Serials Button -->
         <a href="#" class="view-btn" id="serialsTriggerBtn">
             <i class="fa-solid fa-key"></i> Serials
-        </a>
-
-        <!-- Red Admin Panel Trigger Button -->
-        <a href="#" class="admin-trigger-btn" id="adminTriggerBtn">
-            <i class="fa-solid fa-shield-halved"></i> Admin Panel
-        </a>
-
-        <!-- View Button 1 (Unlocked with 'P') -->
-        <a href="#" class="view-btn" id="viewBtn">
-            <i class="fa-solid fa-lock" id="viewIcon"></i> <span id="viewText">Locked</span>
-        </a>
-
-        <!-- View Button 2 (Unlocked with 'M') -->
-        <a href="#" class="view-btn" id="viewBtn2">
-            <i class="fa-solid fa-lock" id="viewIcon2"></i> <span id="viewText2">Locked</span>
         </a>
 
         <!-- YouTube Link -->
@@ -743,84 +487,6 @@
         </div>
     </div>
 
-    <!-- Admin Full-Screen Glassmorphism Modal Overlay -->
-    <div class="admin-overlay" id="adminOverlay">
-        <div class="admin-modal-card">
-            <i class="fa-solid fa-xmark admin-close-x" id="adminCloseBtn"></i>
-            
-            <!-- State 1: Login Form -->
-            <div id="adminLoginView">
-                <div class="admin-modal-title">Admin Login</div>
-                <div class="admin-error" id="adminError"></div>
-                <input type="password" class="admin-input" id="adminPassInput" placeholder="Enter password...">
-                <button class="admin-btn" id="adminLoginSubmitBtn" style="margin-top: 10px; width: 100%;">Login</button>
-            </div>
-
-            <!-- State 2: Admin Control Center Dashboard -->
-            <div id="adminEditorView" style="display: none;">
-                <div class="admin-modal-title" style="color: #44ff44; margin-bottom: 15px;"><i class="fa-solid fa-terminal"></i> Command Center</div>
-                
-                <!-- Feature 1: Theme Switcher -->
-                <div class="admin-control-group">
-                    <label>God-Mode Theme Preset</label>
-                    <select class="admin-input" id="adminThemeSelect">
-                        <option value="default">Rainbow Cyber (Default)</option>
-                        <option value="matrix">Matrix Green</option>
-                        <option value="cyberpunk">Cyberpunk Red</option>
-                        <option value="midnight">Midnight Pitch Black</option>
-                    </select>
-                </div>
-
-                <!-- Feature 2: Bio & Stat Spoofing -->
-                <div class="admin-control-group" style="margin-top: 12px;">
-                    <label>Custom Bio Box Text</label>
-                    <textarea class="admin-input" id="adminBioInput" rows="2" style="resize: none;"></textarea>
-                </div>
-                <div class="admin-control-group" style="margin-top: 12px;">
-                    <label>Fake Visitor Count Override</label>
-                    <input type="text" class="admin-input" id="adminViewsInput" placeholder="e.g. 999999 (leave blank for real)">
-                </div>
-
-                <!-- Feature 3: VFX & Cursor Customizer -->
-                <div class="admin-control-group" style="margin-top: 12px;">
-                    <label>Interactive Bubbles</label>
-                    <select class="admin-input" id="adminBubblesSelect">
-                        <option value="enabled">Enabled</option>
-                        <option value="disabled">Disabled</option>
-                    </select>
-                </div>
-                <div class="admin-control-group" style="margin-top: 12px;">
-                    <label>Cursor Glow Color</label>
-                    <select class="admin-input" id="adminCursorColorSelect">
-                        <option value="#00ffff">Cyan Glow</option>
-                        <option value="#00ff41">Matrix Green</option>
-                        <option value="#ff0055">Neon Pink</option>
-                        <option value="#ffaa00">Gold Fire</option>
-                    </select>
-                </div>
-
-                <!-- Feature 4: Killswitch / Maintenance Mode -->
-                <div class="admin-control-group" style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
-                    <button class="admin-btn" id="adminKillswitchBtn" style="background: rgba(255,0,0,0.25); border-color: rgba(255,0,0,0.6); color: #ff6666;">
-                        <i class="fa-solid fa-skull"></i> Toggle Site Killswitch
-                    </button>
-                </div>
-
-                <button class="admin-btn" id="adminSaveBtn" style="margin-top: 15px; width: 100%; background: rgba(0,255,65,0.3); border-color: rgba(0,255,65,0.7);">
-                    Save & Apply Changes
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notice Glassmorphism Modal Overlay (Triggered by Button 2) -->
-    <div class="admin-overlay" id="noticeOverlay">
-        <div class="admin-modal-card" style="text-align: center; justify-content: center; align-items: center; min-height: 150px; padding: 30px 20px;">
-            <i class="fa-solid fa-xmark admin-close-x" id="noticeCloseBtn"></i>
-            <div style="font-size: 20px; font-weight: 600; color: #ffffff; letter-spacing: 0.5px;">What are you doing?</div>
-        </div>
-    </div>
-
     <!-- Background Music Player -->
     <audio id="bgMusic" loop preload="auto">
         <source src="music.mp3" type="audio/mpeg">
@@ -835,44 +501,6 @@
     <div class="footer-credit">&copy; Copyright SKZLX Foundation. All rights reserved. K65J0P9HHJ.</div>
 
     <script>
-        // Apply Saved Admin Configurations Immediately on Load
-        const savedTheme = localStorage.getItem('skzlx_theme') || 'default';
-        if (savedTheme !== 'default') document.body.classList.add('theme-' + savedTheme);
-
-        const savedBio = localStorage.getItem('skzlx_bio');
-        if (savedBio) document.getElementById('bioBoxText').innerText = savedBio;
-
-        const savedKillswitch = localStorage.getItem('skzlx_killswitch') === 'true';
-        if (savedKillswitch) document.getElementById('killswitchOverlay').style.display = 'flex';
-
-        // Permanent Visitor Counter with Admin Override Support
-        const viewCountSpan = document.getElementById('viewCount');
-        const fakeViews = localStorage.getItem('skzlx_fake_views');
-        if (fakeViews) {
-            viewCountSpan.innerText = fakeViews;
-        } else {
-            fetch('https://api.counterapi.dev/v1/skzlx/website_visits/up')
-                .then(r => r.json())
-                .then(data => viewCountSpan.innerText = data.count || '---')
-                .catch(() => viewCountSpan.innerText = '---');
-        }
-
-        // Live UK Time Clock Logic
-        function updateUkTime() {
-            const timeSpan = document.getElementById('ukTime');
-            if (!timeSpan) return;
-            const options = { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            timeSpan.innerText = new Intl.DateTimeFormat('en-GB', options).format(new Date());
-        }
-        setInterval(updateUkTime, 1000);
-        updateUkTime();
-
-        // Voting System Logic 
-        function submitVote() {
-            document.getElementById('votingButtons').style.display = 'none';
-            document.getElementById('votingDoneMessage').style.display = 'block';
-        }
-
         // Serials Modal UI Logic
         const serialsTriggerBtn = document.getElementById('serialsTriggerBtn');
         const serialsOverlay = document.getElementById('serialsOverlay');
@@ -893,89 +521,6 @@
                 if (e.target === serialsOverlay) serialsOverlay.classList.remove('active');
             });
         }
-
-        // Admin Modal UI Logic & Secure Obfuscated Check
-        const adminTriggerBtn = document.getElementById('adminTriggerBtn');
-        const adminOverlay = document.getElementById('adminOverlay');
-        const adminCloseBtn = document.getElementById('adminCloseBtn');
-        const adminPassInput = document.getElementById('adminPassInput');
-        const adminLoginSubmitBtn = document.getElementById('adminLoginSubmitBtn');
-        const adminError = document.getElementById('adminError');
-        const adminLoginView = document.getElementById('adminLoginView');
-        const adminEditorView = document.getElementById('adminEditorView');
-
-        adminTriggerBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            adminOverlay.classList.add('active');
-            adminPassInput.value = '';
-            adminError.innerText = '';
-            adminLoginView.style.display = 'block';
-            adminEditorView.style.display = 'none';
-        });
-
-        adminCloseBtn.addEventListener('click', () => {
-            adminOverlay.classList.remove('active');
-        });
-
-        adminOverlay.addEventListener('click', (e) => {
-            if (e.target === adminOverlay) adminOverlay.classList.remove('active');
-        });
-
-        adminLoginSubmitBtn.addEventListener('click', () => {
-            const val = adminPassInput.value;
-            // Base64 obfuscated check for "lol6789" preventing casual code inspection bypass
-            const decodedTarget = atob("bG9sNjc4OQ==");
-
-            if (val === decodedTarget) {
-                adminError.innerText = '';
-                adminLoginView.style.display = 'none';
-                adminEditorView.style.display = 'block';
-
-                // Populate form fields with current settings
-                document.getElementById('adminThemeSelect').value = localStorage.getItem('skzlx_theme') || 'default';
-                document.getElementById('adminBioInput').value = localStorage.getItem('skzlx_bio') || document.getElementById('bioBoxText').innerText;
-                document.getElementById('adminViewsInput').value = localStorage.getItem('skzlx_fake_views') || '';
-                document.getElementById('adminBubblesSelect').value = localStorage.getItem('skzlx_bubbles') || 'enabled';
-                document.getElementById('adminCursorColorSelect').value = localStorage.getItem('skzlx_cursor_color') || '#00ffff';
-            } else {
-                adminError.innerText = 'Incorrect password!';
-                adminPassInput.value = '';
-            }
-        });
-
-        adminPassInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') adminLoginSubmitBtn.click();
-        });
-
-        // Admin Save Changes Logic
-        document.getElementById('adminSaveBtn').addEventListener('click', () => {
-            const themeVal = document.getElementById('adminThemeSelect').value;
-            const bioVal = document.getElementById('adminBioInput').value;
-            const viewsVal = document.getElementById('adminViewsInput').value;
-            const bubblesVal = document.getElementById('adminBubblesSelect').value;
-            const cursorColorVal = document.getElementById('adminCursorColorSelect').value;
-
-            localStorage.setItem('skzlx_theme', themeVal);
-            if (bioVal) localStorage.setItem('skzlx_bio', bioVal);
-            else localStorage.removeItem('skzlx_bio');
-
-            if (viewsVal) localStorage.setItem('skzlx_fake_views', viewsVal);
-            else localStorage.removeItem('skzlx_fake_views');
-
-            localStorage.setItem('skzlx_bubbles', bubblesVal);
-            localStorage.setItem('skzlx_cursor_color', cursorColorVal);
-
-            alert('Admin settings saved successfully! Reloading...');
-            location.reload();
-        });
-
-        // Killswitch Toggle Logic
-        document.getElementById('adminKillswitchBtn').addEventListener('click', () => {
-            const currentStatus = localStorage.getItem('skzlx_killswitch') === 'true';
-            localStorage.setItem('skzlx_killswitch', !currentStatus);
-            alert('Killswitch state updated! Reloading...');
-            location.reload();
-        });
 
         // Confetti Burst Effect on Buttons
         function triggerConfetti(e) {
@@ -1014,7 +559,7 @@
             }
         }
 
-        document.querySelectorAll('.link-btn, .view-btn, .admin-trigger-btn').forEach(btn => {
+        document.querySelectorAll('.link-btn, .view-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 triggerConfetti(e);
             });
@@ -1048,35 +593,33 @@
             requestAnimationFrame(updateDvdBounce);
         });
 
-        // Interactive Floating Bubbles Generator (Respects Admin Toggle)
-        if (localStorage.getItem('skzlx_bubbles') !== 'disabled') {
-            function createBubble() {
-                const bubble = document.createElement('div');
-                bubble.className = 'bubble';
-                
-                const size = Math.random() * 38 + 22;
-                bubble.style.width = size + 'px';
-                bubble.style.height = size + 'px';
-                
-                const startX = Math.random() * (window.innerWidth - size);
-                bubble.style.left = startX + 'px';
-                
-                const duration = Math.random() * 6 + 6;
-                bubble.style.animationDuration = duration + 's';
-                
-                bubble.addEventListener('mousedown', (e) => {
-                    e.stopPropagation();
-                    playPopSound();
-                    bubble.style.transform = 'scale(1.4)';
-                    bubble.style.opacity = '0';
-                    setTimeout(() => bubble.remove(), 200);
-                });
-                
-                document.body.appendChild(bubble);
-                setTimeout(() => bubble.remove(), duration * 1000);
-            }
-            setInterval(createBubble, 600);
+        // Interactive Floating Bubbles Generator
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            const size = Math.random() * 38 + 22;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            
+            const startX = Math.random() * (window.innerWidth - size);
+            bubble.style.left = startX + 'px';
+            
+            const duration = Math.random() * 6 + 6;
+            bubble.style.animationDuration = duration + 's';
+            
+            bubble.addEventListener('mousedown', (e) => {
+                e.stopPropagation();
+                playPopSound();
+                bubble.style.transform = 'scale(1.4)';
+                bubble.style.opacity = '0';
+                setTimeout(() => bubble.remove(), 200);
+            });
+            
+            document.body.appendChild(bubble);
+            setTimeout(() => bubble.remove(), duration * 1000);
         }
+        setInterval(createBubble, 600);
 
         // Web Audio API Sound Generator
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1115,11 +658,11 @@
             } catch(e) {}
         }
 
-        // Custom Glowing Mouse Trail Logic (Respects Admin Customizer Color)
+        // Custom Glowing Mouse Trail Logic 
         const coords = { x: 0, y: 0 };
         const numTrails = 12; 
         const trails = [];
-        const customCursorColor = localStorage.getItem('skzlx_cursor_color') || '#00ffff';
+        const customCursorColor = '#00ffff';
         
         const cursorDot = document.createElement('div');
         cursorDot.className = 'cursor-dot';
@@ -1162,7 +705,7 @@
         }
         animateTrails();
 
-        document.querySelectorAll('a, .profile-pic, .music-controls, .link-btn, .poll-choice-btn, .admin-btn').forEach(el => {
+        document.querySelectorAll('a, .profile-pic, .music-controls, .link-btn').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursorDot.style.width = '24px';
                 cursorDot.style.height = '24px';
@@ -1174,7 +717,7 @@
         });
 
         // 3D Glass Tilt Effect for UI Elements
-        const tiltElements = document.querySelectorAll('.bio-box, .poll-box, .view-btn, .link-btn, .admin-trigger-btn');
+        const tiltElements = document.querySelectorAll('.bio-box, .view-btn, .link-btn');
         
         tiltElements.forEach(el => {
             el.style.transformStyle = 'preserve-3d';
@@ -1221,71 +764,12 @@
                 .catch(err => {});
         })();
 
-        // Keyboard Unlock Logic for Button 1 (Key: P)
-        let isUnlocked = false;
-        const viewBtn = document.getElementById('viewBtn');
-        const viewIcon = document.getElementById('viewIcon');
-        const viewText = document.getElementById('viewText');
-
-        viewBtn.addEventListener('click', (e) => {
-            if (!isUnlocked) {
-                e.preventDefault();
-                playSciFiSound(200, 'sawtooth', 0.1); 
-            }
-        });
-
-        // Keyboard Unlock Logic for Button 2 (Key: M) & Notice Overlay Modal
-        let isUnlocked2 = false;
-        const viewBtn2 = document.getElementById('viewBtn2');
-        const viewIcon2 = document.getElementById('viewIcon2');
-        const viewText2 = document.getElementById('viewText2');
-        const noticeOverlay = document.getElementById('noticeOverlay');
-        const noticeCloseBtn = document.getElementById('noticeCloseBtn');
-
-        viewBtn2.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (!isUnlocked2) {
-                playSciFiSound(200, 'sawtooth', 0.1); 
-            } else {
-                noticeOverlay.classList.add('active');
-                playSciFiSound(1200, 'sine', 0.05);
-            }
-        });
-
-        noticeCloseBtn.addEventListener('click', () => {
-            noticeOverlay.classList.remove('active');
-        });
-
-        noticeOverlay.addEventListener('click', (e) => {
-            if (e.target === noticeOverlay) noticeOverlay.classList.remove('active');
-        });
-
-        // Global Keydown Listener for P and M Unlocks
-        window.addEventListener('keydown', (e) => {
-            const key = e.key.toLowerCase();
-            
-            if (key === 'p' && !isUnlocked) {
-                isUnlocked = true;
-                viewBtn.href = 'skibidi.html';
-                viewIcon.className = 'fa-solid fa-eye';
-                viewText.innerText = 'View';
-                playSciFiSound(1400, 'sine', 0.15); 
-            }
-            
-            if (key === 'm' && !isUnlocked2) {
-                isUnlocked2 = true;
-                viewIcon2.className = 'fa-solid fa-eye';
-                viewText2.innerText = 'View';
-                playSciFiSound(1400, 'sine', 0.15); 
-            }
-        });
-
         const music = document.getElementById("bgMusic");
         const musicText = document.getElementById("musicText");
         const musicIcon = document.getElementById("musicIcon");
         let isPlaying = false;
 
-        document.querySelectorAll('.link-btn, .view-btn, .music-controls, .poll-choice-btn').forEach(el => {
+        document.querySelectorAll('.link-btn, .view-btn, .music-controls').forEach(el => {
             el.addEventListener('mouseenter', () => playSciFiSound(800, 'triangle', 0.03));
             el.addEventListener('click', () => playSciFiSound(1200, 'sine', 0.05));
         });
