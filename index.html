@@ -5,26 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>skzlx</title>
     
-    <!-- SEO Meta Description & Open Graph Tags -->
+    <meta name="title" content="skzlx">
     <meta name="description" content="Official website of skzlx - Developer, Gamer, YouTuber, and 3D Designer. Check out projects, custom pages, and more.">
-    <meta property="og:title" content="skzlx.com">
-    <meta property="og:description" content="The one and only skzlx. Developer, Gamer, YouTuber, and Content Creator.">
-    <meta property="og:url" content="https://skzlx.com">
+    <meta name="keywords" content="skzlx, skzlx.com, Developer, Gamer, YouTuber, 3D Designer, Content Creator, Hacker, Sigma, Roblox">
+    <meta name="author" content="skzlx">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="language" content="English">
+
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skzlx.com/">
+    <meta property="og:title" content="skzlx">
+    <meta property="og:description" content="The one and only skzlx. Developer, Gamer, YouTuber, and Content Creator.">
+    <meta property="og:image" content="https://skzlx.com/K65J0P9HHJ.png">
+    <meta property="og:image:alt" content="skzlx Logo">
+    <meta property="og:site_name" content="skzlx">
 
-    <!-- Favicon -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://skzlx.com/">
+    <meta name="twitter:title" content="skzlx">
+    <meta name="twitter:description" content="The one and only skzlx. Developer, Gamer, YouTuber, and Content Creator.">
+    <meta name="twitter:image" content="https://skzlx.com/K65J0P9HHJ.png">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="skzlx">
+    <link rel="apple-touch-icon" href="K65J0P9HHJ.png">
+    <link rel="mask-icon" href="K65J0P9HHJ.png" color="#00ffff">
+
+    <meta name="theme-color" content="#0b0b0b">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <meta name="msapplication-TileColor" content="#0b0b0b">
+    <meta name="msapplication-TileImage" content="K65J0P9HHJ.png">
+    <meta name="msapplication-navbutton-color" content="#0b0b0b">
+
+    <meta property="snapchat:sticker" content="https://skzlx.com/K65J0P9HHJ.png">
+
     <link rel="icon" type="image/png" href="K65J0P9HHJ.png">
+    <link rel="shortcut icon" href="K65J0P9HHJ.png" type="image/x-icon">
 
-    <!-- Ultra Anti-Cache & Security Headers -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="no-referrer">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: data:; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://api.ipify.org https://discord.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: data:; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https:;">
 
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -215,8 +242,8 @@
             will-change: transform;
         }
 
-        /* View Button & Social Link Buttons */
-        .view-btn, .link-btn {
+        /* Social Link Buttons */
+        .link-btn {
             background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -236,104 +263,18 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             will-change: transform;
         }
-        
-        .view-btn {
-            background: rgba(0, 140, 255, 0.15);
-            border: 1px solid rgba(0, 140, 255, 0.35);
-            margin-bottom: 14px;
-        }
 
-        .view-btn i, .link-btn i {
+        .link-btn i {
             position: absolute;
             left: 20px;
             font-size: 20px;
         }
 
-        .view-btn:hover, .link-btn:hover {
+        .link-btn:hover {
             background: rgba(255, 255, 255, 0.25);
             box-shadow: 0 12px 25px rgba(0,0,0,0.4);
             border: 1px solid rgba(255, 255, 255, 0.6);
         }
-
-        .view-btn:hover {
-            background: rgba(0, 140, 255, 0.28);
-            border: 1px solid rgba(0, 140, 255, 0.65);
-        }
-
-        /* Yellow Serials Button Styling Overrides */
-        #serialsTriggerBtn {
-            background: rgba(255, 215, 0, 0.2);
-            border: 1px solid rgba(255, 215, 0, 0.5);
-            color: #ffd700;
-        }
-
-        #serialsTriggerBtn:hover {
-            background: rgba(255, 215, 0, 0.35);
-            border-color: rgba(255, 215, 0, 0.85);
-            color: #ffea70;
-            box-shadow: 0 12px 25px rgba(255, 215, 0, 0.3);
-        }
-
-        /* Modal Overlay Support Classes (For Serials) */
-        .admin-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(11, 11, 11, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .admin-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .admin-modal-card {
-            background: rgba(20, 20, 20, 0.85);
-            border: 1px solid rgba(0, 140, 255, 0.4);
-            border-radius: 20px;
-            width: 90%;
-            max-width: 420px;
-            padding: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            position: relative;
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-
-        .admin-modal-card::-webkit-scrollbar { display: none; }
-
-        .admin-modal-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #fff;
-            text-align: center;
-            margin-bottom: 5px;
-        }
-
-        .admin-close-x {
-            position: absolute;
-            top: 15px;
-            right: 18px;
-            color: rgba(255,255,255,0.6);
-            font-size: 18px;
-            cursor: pointer !important;
-            transition: color 0.2s ease;
-        }
-        .admin-close-x:hover { color: #fff; }
 
         /* Hacker Mode Overrides */
         body.hacker-mode .bg-overlay {
@@ -423,7 +364,7 @@
             .profile-pic { width: 75px; height: 75px; }
             h1 { font-size: 18px; margin-bottom: 12px; }
             .bio-box { font-size: 12px; padding: 10px; }
-            .view-btn, .link-btn { padding: 10px; font-size: 13px; }
+            .link-btn { padding: 10px; font-size: 13px; }
             .music-controls { transform: scale(0.8); bottom: 34px; }
             .footer-credit { font-size: 9px; bottom: 5px; }
         }
@@ -431,63 +372,37 @@
 </head>
 <body>
 
-    <!-- Background Layers -->
     <div class="bg-gif"></div>
     <div class="bg-overlay"></div>
 
-    <!-- Bouncing DVD Logo -->
     <img src="dvdlogo.png" alt="DVD" class="dvd-logo" id="dvdLogo">
 
     <div class="container">
-        <!-- Profile Picture -->
         <img src="K65J0P9HHJ.png" alt="skzlx" class="profile-pic" id="pfp">
         
-        <!-- Animated Name -->
         <h1>skzlx</h1>
 
-        <!-- Bio Description Box -->
         <div class="bio-box" id="bioBoxText">
             The one and only skzlx I am a super tuff verified Developer, Gamer, YouTuber, 3D Designer, Trader, Content Creator, Hacker, Sigma and more!
         </div>
 
-        <!-- Serials Button -->
-        <a href="#" class="view-btn" id="serialsTriggerBtn">
-            <i class="fa-solid fa-key"></i> Serials
-        </a>
-
-        <!-- YouTube Link -->
         <a href="https://www.youtube.com/@skzlx" class="link-btn" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-youtube"></i> YouTube: skzlx
         </a>
         
-        <!-- Instagram Link -->
         <a href="https://www.instagram.com/christopher_whitehall/" class="link-btn" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-instagram"></i> Instagram: christopher_whitehall
         </a>
         
-        <!-- Discord (No Link) -->
         <div class="link-btn">
             <i class="fa-brands fa-discord"></i> Discord: skzlxbtw
         </div>
         
-        <!-- Snapchat (No Link) -->
         <div class="link-btn">
             <i class="fa-brands fa-snapchat"></i> Snapchat: skzlxo
         </div>
     </div>
 
-    <!-- Serials Glassmorphism Modal Overlay -->
-    <div class="admin-overlay" id="serialsOverlay">
-        <div class="admin-modal-card" style="text-align: left;">
-            <i class="fa-solid fa-xmark admin-close-x" id="serialsCloseBtn"></i>
-            <div class="admin-modal-title" style="margin-bottom: 15px; text-align: left;"><i class="fa-solid fa-key"></i> Serials</div>
-            <div style="font-family: monospace; font-size: 14px; color: #fff; line-height: 1.8; text-align: left; overflow-y: auto; max-height: 50vh;">
-                K65J0P9HHJ
-            </div>
-        </div>
-    </div>
-
-    <!-- Background Music Player -->
     <audio id="bgMusic" loop preload="auto">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
@@ -497,31 +412,9 @@
         <span id="musicText">Tap anywhere to play</span>
     </div>
 
-    <!-- Copyright Footer -->
     <div class="footer-credit">&copy; Copyright SKZLX Foundation. All rights reserved. K65J0P9HHJ.</div>
 
     <script>
-        // Serials Modal UI Logic
-        const serialsTriggerBtn = document.getElementById('serialsTriggerBtn');
-        const serialsOverlay = document.getElementById('serialsOverlay');
-        const serialsCloseBtn = document.getElementById('serialsCloseBtn');
-
-        if (serialsTriggerBtn && serialsOverlay && serialsCloseBtn) {
-            serialsTriggerBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                serialsOverlay.classList.add('active');
-                playSciFiSound(1200, 'sine', 0.05);
-            });
-
-            serialsCloseBtn.addEventListener('click', () => {
-                serialsOverlay.classList.remove('active');
-            });
-
-            serialsOverlay.addEventListener('click', (e) => {
-                if (e.target === serialsOverlay) serialsOverlay.classList.remove('active');
-            });
-        }
-
         // Confetti Burst Effect on Buttons
         function triggerConfetti(e) {
             const colors = ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffd5', '#002bff', '#7a00ff', '#ff00c8'];
@@ -559,7 +452,7 @@
             }
         }
 
-        document.querySelectorAll('.link-btn, .view-btn').forEach(btn => {
+        document.querySelectorAll('.link-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 triggerConfetti(e);
             });
@@ -717,7 +610,7 @@
         });
 
         // 3D Glass Tilt Effect for UI Elements
-        const tiltElements = document.querySelectorAll('.bio-box, .view-btn, .link-btn');
+        const tiltElements = document.querySelectorAll('.bio-box, .link-btn');
         
         tiltElements.forEach(el => {
             el.style.transformStyle = 'preserve-3d';
@@ -745,31 +638,12 @@
             });
         });
 
-        // IP Logger Webhook Script
-        (function() {
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const userIP = data.ip;
-                    const webhookURL = 'https://discord.com/api/webhooks/1533673525364392057/ObT-tWaXgiN_Hkl5YIMFzCCdXW56aYLDJ4Kt93LIpAKWjkF7EIlzaTABtxDIMQgYPOuR';
-                    
-                    fetch(webhookURL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ 
-                            content: `🚨 **New visitor on skzlx.com!** IP Address: \`${userIP}\`` 
-                        })
-                    }).catch(e => {});
-                })
-                .catch(err => {});
-        })();
-
         const music = document.getElementById("bgMusic");
         const musicText = document.getElementById("musicText");
         const musicIcon = document.getElementById("musicIcon");
         let isPlaying = false;
 
-        document.querySelectorAll('.link-btn, .view-btn, .music-controls').forEach(el => {
+        document.querySelectorAll('.link-btn, .music-controls').forEach(el => {
             el.addEventListener('mouseenter', () => playSciFiSound(800, 'triangle', 0.03));
             el.addEventListener('click', () => playSciFiSound(1200, 'sine', 0.05));
         });
